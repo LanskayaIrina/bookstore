@@ -52,35 +52,6 @@ export class useHttp {
     return this.request(url, 'POST', body);
   };
 
-  static patch(url, body) {
-    /**
-     * @param {string} url
-     * @param {object} body
-     */
-    if (!body) throw new Error('There must be a request <body>');
-
-    return this.request(url, 'PATCH', body);
-  }
-
-  static put(url, body) {
-    /**
-     * @param {string} url
-     * @param {object} body
-     */
-    if (!body) throw new Error('There must be a request <body>');
-
-    return this.request(url, 'PUT', body);
-  }
-
-  static delete(url) {
-    /**
-     * @param {string} url
-     * @param {object} body
-     */
-
-    return this.request(url, 'DELETE');
-  }
-
   static redirect = (toUrl) => {
     window.location = toUrl;
     return;
