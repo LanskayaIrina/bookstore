@@ -1,16 +1,15 @@
 import React from 'react';
-import AppRouter from '../../routs/AppRouter';
 import { Header } from '../Header';
 import { Footer } from '../Footer';
 
 import './layout.scss';
 
-export const Layout = () => {
+export const Layout = ({ children }) => {
   return (
     <>
       <Header />
       <div className="content">
-        <AppRouter />
+        { children }
       </div>
       <Footer />
     </>
