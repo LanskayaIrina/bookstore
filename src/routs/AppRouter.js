@@ -8,7 +8,7 @@ const AppRouter = () => {
       <Route exact path="/contacts" />
       <Route exact path="/login" />
       <Route exact path="/cart" />
-      <Route exact path="/books">
+      <Route exact path="/books-page">
         <BooksPage />
       </Route>
       <Route exact path="/">
