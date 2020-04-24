@@ -1,0 +1,52 @@
+a{
+  text-decoration: none;
+}
+.header-container{
+  display: flex;
+  height: 10vh;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  padding:10px 10%;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 3px 3px rgb(192, 189, 189);
+}
+
+.btn-group{
+  display: flex;
+  justify-content: flex-end;
+}
+.btn{
+  border: none;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  width: 70px;
+  box-shadow: 2px 2px gray;
+  text-align: center;
+  color: rgb(32, 31, 31);
+}
+
+.log{
+  background-color: rgb(28, 120, 240);
+}
+
+.card{
+background-color: rgb(189, 187, 187);
+}
+
+.contacts{
+background-color: transparent;
+}
+
+.order{
+  font-size: 16px;
+  font-weight: bold;
+  width: 120px;
+}
+
+.btn:focus{
+  outline: none;
+}

@@ -1,7 +1,5 @@
 import React from 'react';
 
 export const BooksPage = () => {
-  return (
-    <div>Главная страница</div>
-  );
-}
+  return <div>Главная страница</div>;
+};
