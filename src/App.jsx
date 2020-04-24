@@ -1,9 +1,15 @@
 import React from 'react';
+import Footer from './components/Footer';
+import { BrowserRouter } from 'react-router-dom';
+
+import 'normalize.css';
+import './general.scss';
 
 const App = () => (
-  <div>
-    <h1>Hello World!</h1>
-  </div>
+  <BrowserRouter>
+    <div className="App">
+    </div>
+  </BrowserRouter>
 );
 
 export default App;
