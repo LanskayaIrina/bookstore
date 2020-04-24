@@ -1,4 +1,4 @@
-export class useHttp {
+export class HttpService {
   static request = async (url, method = 'GET', body = {}, headers = {}) => {
     /**
      * @param {string} - url
