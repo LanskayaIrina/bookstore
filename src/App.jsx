@@ -1,9 +1,6 @@
 import React from 'react';
+import { Layout } from './components/Layout';
 
-const App = () => (
-  <div>
-    <h1>Hello World!</h1>
-  </div>
-);
+const App = () => <Layout />;
 
 export default App;
