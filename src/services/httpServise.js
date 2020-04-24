@@ -1,19 +1,20 @@
 export class useHttp {
-  static request = async (url, method = 'GET', body, headers = {}) => {
+  static request = async (url, method = 'GET', body = {}, headers = {}) => {
+    /**
+     * @param {string} - url
+     * @param {string} - method
+     * @param {object} - body
+     * @param {object} - headers
+     */
+
     const options = {
       method,
-      body,
-      headers,
+      body: JSON.stringify(body),
+      headers: {
+        'Content-type': 'application/json',
+        ...headers,
+      },
     };
-
-    if (body) {
-      options.body = JSON.stringify(body);
-      options.headers['Content-type'] = 'application/json';
-    }
-
-    if (headers) {
-      options.headers = headers;
-    }
 
     const response = await fetch(url, options);
     return this.parseResponse(response);
