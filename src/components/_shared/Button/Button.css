@@ -24,3 +24,7 @@ background-color: transparent;
   font-weight: bold;
   width: 120px;
 }
+
+.btn:focus{
+  outline: none;
+}

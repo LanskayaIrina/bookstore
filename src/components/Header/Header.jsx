@@ -9,7 +9,7 @@ export function Header({ isLogged }) {
   return (
     <div className="header-container">
       <div className="order-btn">
-        <NavLink to="/">
+        <NavLink to="/books-page">
           <Button title="Get Books" className="btn order" />
         </NavLink>
       </div>
@@ -22,13 +22,13 @@ export function Header({ isLogged }) {
           <Button title="Cart" className="btn card" />
         </NavLink>
 
-        {!isLogged ? (
+        {isLogged ? (
           <NavLink to="/login">
             <Button title="Logout" className="btn log" />
           </NavLink>
         ) : (
           <NavLink to="/login">
-            <Button title="Logout" className="btn log" />
+            <Button title="Login" className="btn log" />
           </NavLink>
         )}
       </div>

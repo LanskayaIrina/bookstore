@@ -8,11 +8,11 @@ import './layout.scss';
 export const Layout = () => {
   return (
     <>
-    <Header />
-    <div className="content">
-      <AppRouter />
-    </div>
-    <Footer />
+      <Header />
+      <div className="content">
+        <AppRouter />
+      </div>
+      <Footer />
     </>
   );
-}
+};
