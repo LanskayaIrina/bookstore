@@ -1,6 +1,6 @@
 import React from 'react';
 import AppRouter from '../../routs/AppRouter';
-// import { Header } from '../Header';
+import { Header } from '../Header';
 import { Footer } from '../Footer';
 
 import './layout.scss';
@@ -8,7 +8,7 @@ import './layout.scss';
 export const Layout = () => {
   return (
     <>
-    {/* <Header /> */}
+    <Header />
     <div className="content">
       <AppRouter />
     </div>
