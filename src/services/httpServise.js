@@ -16,7 +16,6 @@ export class useHttp {
     }
 
     const response = await fetch(url, options);
-    console.log(options);
     return this.parseResponse(response);
   };
 
