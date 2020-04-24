@@ -8,7 +8,7 @@ export const AppRouter = () => {
       <Route exact path="/contacts" />
       <Route exact path="/login" />
       <Route exact path="/cart" />
-      <Route exact path="/books-page" component={ BooksPage } />
+      <Route exact path="/books-page" component={BooksPage} />
       <Route exact path="/">
         <Redirect to="/login" />
       </Route>
