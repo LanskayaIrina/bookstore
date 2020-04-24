@@ -1,5 +1,5 @@
 import React from 'react';
-import AppRouter from '../../routs/AppRouter';
+import { AppRouter } from '../../routs';
 import { Header } from '../Header';
 import { Footer } from '../Footer';
 
