@@ -48,7 +48,6 @@ export class useHttp {
      * @param {object} body
      */
 
-    if (!body) throw new Error('There must be a request <body>');
     return this.request(url, 'POST', body);
   };
 
