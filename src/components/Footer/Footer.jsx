@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import './footer.scss';
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <div className="footer">
       <Grid container spasing={3}>
@@ -44,5 +44,3 @@ const Footer = () => {
     </div>
   );
 };
-
-export default Footer;

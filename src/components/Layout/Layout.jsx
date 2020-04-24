@@ -1,11 +1,11 @@
 import React from 'react';
 import AppRouter from '../../routs/AppRouter';
-// import Header from '../Header';
-import Footer from '../Footer';
+// import { Header } from '../Header';
+import { Footer } from '../Footer';
 
 import './layout.scss';
 
-const Layout = () => {
+export const Layout = () => {
   return (
     <>
     {/* <Header /> */}
@@ -16,5 +16,3 @@ const Layout = () => {
     </>
   );
 }
-
-export default Layout;
