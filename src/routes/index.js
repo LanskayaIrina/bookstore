@@ -10,12 +10,12 @@ export const AppRouter = ({ isLogged }) => {
   return (
     <Switch>
       <Route exact path="/" component={BooksPage} />
-      <Route exact path="/login" component={LogIn}/>
+      <Route exact path="/login" component={LogIn} />
       <PrivateRoutes isLogged={isLogged} />
     </Switch>
   );
-}
+};
 
 AppRouter.propTypes = {
-  isLogged: bool.isRequired,
+  isLogged: bool,
 };
