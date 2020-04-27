@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import BooksPage from '../components/BooksPage';
+import { BooksPage } from '../components/BooksPage';
 
 export const AppRouter = () => {
   return (
