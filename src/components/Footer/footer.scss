@@ -1,8 +1,5 @@
 .footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+  flex: 0 0 auto;
   height: 80px;
   & .container {
     border-top: 2px solid #787878;
