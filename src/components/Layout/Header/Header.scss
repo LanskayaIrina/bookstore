@@ -1,0 +1,102 @@
+@import "../../../styles/variables.scss";
+
+.header {
+  display: flex;
+  height: 10vh;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  padding: 10px 10%;
+  background-color: $bg_header-container;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 3px 3px $color_shadow_header;
+  position: relative;
+}
+
+.header-btn-group {
+  display: none;
+  justify-content: flex-end;
+
+  @media (min-width: 710px) {
+    display: flex;
+  }
+}
+
+.logo-btn-group {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (min-width: 710px) {
+    width: 50%;
+  }
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.log-link {
+  background-color: $color_log-link;
+}
+
+.card-link {
+  background-color: $color_card-link;
+}
+
+.contacts-link {
+  background-color: transparent;
+}
+
+.logo-link {
+  font-size: 16px;
+  font-weight: bold;
+  width: 80px;
+  display: flex;
+
+  @media (min-width: 310px) {
+    width: 120px;
+  }
+}
+
+.burger-menu {
+  @media (min-width: 700px) {
+    display: none;
+  }
+}
+
+.logo-img {
+  display: none;
+  width: 20px;
+  height: auto;
+  margin-right: 5px;
+
+  @media (min-width: 310px) {
+    display: block;
+  }
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.simple-menu {
+  top: -40px;
+  left: -50px;
+  width: 200px;
+  height: 100vh;
+  position: absolute;
+  background-color: $bg_header-container;
+  border-right: 1px solid $base__border-color;
+  box-shadow: 100px 0 100px 1000px #00000062;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 20px 5px 0 5px;
+}

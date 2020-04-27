@@ -1,11 +1,16 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { ErrorBoundary } from './components/Layout/ErrorBoundary/ErrorBoundary';
+import { AppRouter } from './routes';
 
-const App = () => {
-  return (
-    <div>
-      <h1>app</h1>
-    </div>
-  );
-};
+import { Layout } from './components/Layout';
 
-export default App;
+export const App = () => (
+  <BrowserRouter>
+    <ErrorBoundary>
+      <Layout>
+        <AppRouter />
+      </Layout>
+    </ErrorBoundary>
+  </BrowserRouter>
+);

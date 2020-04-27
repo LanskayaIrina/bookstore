@@ -2,6 +2,7 @@
 @import './styles/main.scss';
 
 body {
+  min-height: 100vh;
   font-size: $base__font-size;
   font-family: $base__font-family;
 }
@@ -20,4 +21,14 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+.container{
+  max-width: 1024px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+#root {
+  min-height: 100vh;
 }
