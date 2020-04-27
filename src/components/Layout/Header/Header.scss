@@ -17,6 +17,7 @@
 .header-btn-group {
   display: none;
   justify-content: flex-end;
+
   @media (min-width: 710px) {
     display: flex;
   }
@@ -27,15 +28,10 @@
   width: 80%;
   justify-content: space-between;
   align-items: center;
+
   @media (min-width: 710px) {
     width: 50%;
   }
-}
-
-.link {
-  font-size: 14px;
-  padding: 5px 10px;
-  text-align: center;
 }
 
 .header-link {
@@ -73,6 +69,7 @@
   font-weight: bold;
   width: 80px;
   display: flex;
+
   @media (min-width: 310px) {
     width: 120px;
   }
@@ -89,6 +86,7 @@
   width: 20px;
   height: auto;
   margin-right: 5px;
+
   @media (min-width: 310px) {
     display: block;
   }
@@ -99,12 +97,17 @@
 }
 
 .simple-menu {
-  top: 63px;
-  top: -21px;
+  top: -40px;
+  left: -50px;
   width: 200px;
   height: 100vh;
   position: absolute;
-  background-color: #fff;
-  border-right: 1px solid gray;
+  background-color: $bg_header-container;
+  border-right: 1px solid $base__border-color;
   box-shadow: 100px 0 100px 1000px #00000062;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 20px 5px 0 5px;
 }

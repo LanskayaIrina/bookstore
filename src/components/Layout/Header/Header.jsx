@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 export function Header({ isLogged }) {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMenu, setmobileMenu] = useState(null);
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    setmobileMenu(event.currentTarget);
   };
   const handleClose = () => {
-    setAnchorEl(null);
+    setmobileMenu(null);
   };
 
   return (
@@ -35,26 +35,17 @@ export function Header({ isLogged }) {
         <div className="burger-menu">
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
-            {anchorEl && (
-              <div
-                id="simple-menu"
-                className="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <div className="menu-items">
-                  <NavLink to="/cart" className="link" onClick={handleClose}>
-                    Card
-                  </NavLink>
-                  <NavLink to="/contacts" className="link" onClick={handleClose}>
-                    Contacts
-                  </NavLink>
-                  <NavLink to="/login" className="link" onClick={handleClose}>
-                    Logout
-                  </NavLink>
-                </div>
+            {mobileMenu && (
+              <div className="simple-menu">
+                <NavLink to="/cart" className="link" onClick={handleClose}>
+                  Card
+                </NavLink>
+                <NavLink to="/contacts" className="link" onClick={handleClose}>
+                  Contacts
+                </NavLink>
+                <NavLink to="/login" className="link" onClick={handleClose}>
+                  Logout
+                </NavLink>
               </div>
             )}
           </IconButton>
