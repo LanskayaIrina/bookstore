@@ -34,17 +34,6 @@
   }
 }
 
-.header-link {
-  border: none;
-  padding: 5px 10px;
-  margin-right: 10px;
-  border-radius: 10px;
-  width: 70px;
-  box-shadow: 2px 2px 2px $color_shadow_link;
-  text-align: center;
-  color: $color_link;
-}
-
 .menu-items {
   display: flex;
   flex-direction: column;

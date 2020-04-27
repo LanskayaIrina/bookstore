@@ -3,14 +3,15 @@ import { bool } from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { PrivateRoutes } from './PrivateRoutes';
-import { BooksPage } from '../components/BooksPage';
 import { LogIn } from './LogIn';
 
 export const AppRouter = ({ isLogged }) => {
   return (
     <Switch>
-      <Route exact path="/" component={BooksPage} />
-      <Route exact path="/login" component={LogIn} />
+      <Route exact path="/">
+        <Redirect to="/login" />
+      </Route>
+      <Route path="/login" component={LogIn} />
       <PrivateRoutes isLogged={isLogged} />
     </Switch>
   );
@@ -18,4 +19,8 @@ export const AppRouter = ({ isLogged }) => {
 
 AppRouter.propTypes = {
   isLogged: bool,
+};
+
+AppRouter.defaultProps = {
+  isLogged: false,
 };

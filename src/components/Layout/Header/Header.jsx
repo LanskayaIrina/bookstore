@@ -19,14 +19,17 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
 }));
-export function Header({ isLogged }) {
+
+export const Header = ({ isLogged }) => {
   const classes = useStyles();
-  const [mobileMenu, setmobileMenu] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+
   const handleClick = (event) => {
-    setmobileMenu(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
-    setmobileMenu(null);
+    setAnchorEl(null);
   };
 
   return (
@@ -35,17 +38,26 @@ export function Header({ isLogged }) {
         <div className="burger-menu">
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
-            {mobileMenu && (
-              <div className="simple-menu">
-                <NavLink to="/cart" className="link" onClick={handleClose}>
-                  Card
-                </NavLink>
-                <NavLink to="/contacts" className="link" onClick={handleClose}>
-                  Contacts
-                </NavLink>
-                <NavLink to="/login" className="link" onClick={handleClose}>
-                  Logout
-                </NavLink>
+            {anchorEl && (
+              <div
+                id="simple-menu"
+                className="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <div className="menu-items">
+                  <NavLink to="/cart" className="link" onClick={handleClose}>
+                    Card
+                  </NavLink>
+                  <NavLink to="/contacts" className="link" onClick={handleClose}>
+                    Contacts
+                  </NavLink>
+                  <NavLink to="/login" className="link" onClick={handleClose}>
+                    Logout
+                  </NavLink>
+                </div>
               </div>
             )}
           </IconButton>
@@ -58,14 +70,14 @@ export function Header({ isLogged }) {
         </div>
       </div>
       <div className="header-btn-group">
-        <NavLink to="/contacts" className="link header-link contacts-link">
+        <NavLink to="/contacts" className="link  contacts-link">
           Contacts
         </NavLink>
-        <NavLink to="/cart" className="link header-link card-link">
+        <NavLink to="/cart" className="link  card-link">
           Cart
         </NavLink>
         {isLogged ? (
-          <NavLink to="/login" className="link header-link log-link">
+          <NavLink to="/login" className="link log-link">
             Logout
           </NavLink>
         ) : (
@@ -76,8 +88,12 @@ export function Header({ isLogged }) {
       </div>
     </div>
   );
-}
+};
 
 Header.propTypes = {
   isLogged: bool,
+};
+
+Header.defaultProps = {
+  isLogged: false,
 };

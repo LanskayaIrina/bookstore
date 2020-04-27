@@ -10,12 +10,12 @@ export const Footer = () => {
       <Grid item xs={12} md={4}>
         <div className="footer-info">
           <div className="footer-info-item">
-            <Link to="#" className="footer-info-link">
+            <Link to="#" className="link">
               Privacy
             </Link>
           </div>
           <div className="footer-info-item">
-            <Link to="#" className="footer-info-link">
+            <Link to="#" className="link">
               Terms
             </Link>
           </div>
@@ -29,7 +29,7 @@ export const Footer = () => {
       </Grid>
       <Grid item xs={12} md={4}>
         <div className="footer-nav">
-          <Link to="#" className="footer-nav-link">
+          <Link to="#" className="link">
             Support
           </Link>
         </div>

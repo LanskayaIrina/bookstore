@@ -1,10 +1,37 @@
 .link {
-  font-size: 14px;
+  border: none;
   padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  width: 70px;
   text-align: center;
+  color: $color_link;
+
+  .header &,
+  .footer & {
+    font-size: 18px;
+  }
+
+  .header & {
+    box-shadow: 2px 2px 2px $color_shadow_link;
+  }
+
+  .logo & {
+    box-shadow: none;
+    max-width: 110px;
+    width: 100%;
+  }
+
+  .footer & {
+    color: $base__link-color;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
   .simple-menu & {
     text-align: start;
+    box-shadow: none;
     &:hover {
       color: $color_log-link;
     }

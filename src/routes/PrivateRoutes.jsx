@@ -2,14 +2,14 @@ import React from 'react';
 import { bool } from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { BooksPage } from '../components/BooksPage';
+import { BooksPage } from './Books';
 
 export const PrivateRoutes = ({ isLogged }) => {
   const Routes = (
     <Switch>
-      <Route exact path="/contacts" />
-      <Route exact path="/cart" />
-      <Route exact path={['/books', '/']} component={BooksPage} />
+      <Route path="/contacts" />
+      <Route path="/cart" />
+      <Route exact path="/books" component={BooksPage} />
     </Switch>
   );
 
@@ -20,4 +20,8 @@ export const PrivateRoutes = ({ isLogged }) => {
 
 PrivateRoutes.propTypes = {
   isLogged: bool,
+};
+
+PrivateRoutes.defaultProps = {
+  isLogged: false,
 };
