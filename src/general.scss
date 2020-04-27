@@ -1,1 +1,22 @@
 @import './styles/main.scss';
+
+body {
+  font-size: $base__font-size;
+  font-family: $base__font-family;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: $base__link-color;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
