@@ -6,7 +6,7 @@ import './layout.scss';
 
 export const Layout = ({ children }) => {
   return (
-    <div className="container">
+    <div className="container layout">
       <Header />
       <div className="content">{children}</div>
       <Footer />
