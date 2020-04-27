@@ -1,17 +1,13 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { AppRouter } from './routs';
+import { AppRouter } from './routes';
 
 import { Layout } from './components/Layout';
 
-const App = () => (
+export const App = () => (
   <BrowserRouter>
-    <div className="App">
-      <Layout>
-        <AppRouter />
-      </Layout>
-    </div>
+    <Layout>
+      <AppRouter />
+    </Layout>
   </BrowserRouter>
 );
-
-export default App;

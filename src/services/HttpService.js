@@ -26,6 +26,7 @@ export class HttpService {
     }
 
     const response = await fetch(`${baseUrl}${url}`, requestOptions);
+
     return this.parseResponse(response);
   };
 
