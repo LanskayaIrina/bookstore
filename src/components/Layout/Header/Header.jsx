@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { bool } from 'prop-types';
-
 import { makeStyles } from '@material-ui/core/styles';
-
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import logo from '../../images/logo.svg';
-
+import logo from '../../../images/logo.svg';
 import './Header.scss';
 
 const useStyles = makeStyles((theme) => ({
@@ -63,7 +60,7 @@ export function Header({ isLogged }) {
           </IconButton>
         </div>
         <div className="logo">
-          <NavLink to="/books" className="link header-link logo-link">
+          <NavLink to="/books" className="link logo-link">
             <img className="logo-img" src={logo} alt="envelope" />
             Get Books
           </NavLink>
@@ -73,17 +70,16 @@ export function Header({ isLogged }) {
         <NavLink to="/contacts" className="link header-link contacts-link">
           Contacts
         </NavLink>
-
         <NavLink to="/cart" className="link header-link card-link">
           Cart
         </NavLink>
         {isLogged ? (
           <NavLink to="/login" className="link header-link log-link">
-            Login
+            Logout
           </NavLink>
         ) : (
           <NavLink to="/login" className="link header-link log-link">
-            Logout
+            Login
           </NavLink>
         )}
       </div>
