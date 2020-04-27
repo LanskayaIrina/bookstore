@@ -13,6 +13,6 @@ module.exports = {
   rules: {
     'no-empty-pattern': 0,
     'no-unused-vars': 0,
-    'no-console':2,
+    'no-console': 2,
   },
 };

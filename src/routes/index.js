@@ -2,25 +2,19 @@ import React from 'react';
 import { bool } from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
+import { PrivateRoutes } from './PrivateRoutes';
 import { BooksPage } from '../components/BooksPage';
 import { LogIn } from './LogIn';
 
 export const AppRouter = ({ isLogged }) => {
-  const routs = (
+  return (
     <Switch>
-      <Route exact path="/contacts" />
-      <Route exact path="/cart" />
-      <Route exact path={['/books', '/']} component={BooksPage} />
+      <Route exact path="/" component={BooksPage} />
+      <Route exact path="/login" component={LogIn}/>
+      <PrivateRoutes isLogged={isLogged} />
     </Switch>
   );
-  const userNotLogged = (
-    <Switch>
-      <Route path="/login" component={LogIn} />
-      <Redirect to="/login" />
-    </Switch>
-  );
-  return isLogged ? routs : userNotLogged;
-};
+}
 
 AppRouter.propTypes = {
   isLogged: bool.isRequired,
