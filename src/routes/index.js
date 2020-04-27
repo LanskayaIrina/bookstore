@@ -9,7 +9,6 @@ export const AppRouter = ({ isLogged }) => {
   const routs = (
     <Switch>
       <Route exact path="/contacts" />
-      <Route exact path="/login" component={LogIn} />
       <Route exact path="/cart" />
       <Route exact path={['/books', '/']} component={BooksPage} />
     </Switch>
