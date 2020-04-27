@@ -1,0 +1,9 @@
+.form-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 25%;
+  .form-login-submit {
+    margin-top: 20px;
+  }
+}
