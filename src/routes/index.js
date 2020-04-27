@@ -17,5 +17,5 @@ export const AppRouter = ({ isLogged }) => {
 }
 
 AppRouter.propTypes = {
-  isLogged: bool.isRequired,
+  isLogged: bool,
 };

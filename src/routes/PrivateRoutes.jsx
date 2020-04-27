@@ -19,5 +19,5 @@ export const PrivateRoutes = ({ isLogged }) => {
 };
 
 PrivateRoutes.propTypes = {
-  isLogged: bool.isRequired,
+  isLogged: bool,
 };
