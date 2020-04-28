@@ -5,7 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import logo from '../../../images/logo.svg';
+import { BOOKS, CART, CONTACTS, LOGIN } from 'constants/pathNames';
+import logo from 'assets/images/logo.svg';
+
 import './styles.scss';
 
 const useStyles = makeStyles((theme) => ({
@@ -48,13 +50,13 @@ export const Header = ({ isLogged }) => {
                 onClose={handleClose}
               >
                 <div className="menu-items">
-                  <NavLink to="/cart" className="link" onClick={handleClose}>
+                  <NavLink to={CART} className="link" onClick={handleClose}>
                     Card
                   </NavLink>
-                  <NavLink to="/contacts" className="link" onClick={handleClose}>
+                  <NavLink to={CONTACTS} className="link" onClick={handleClose}>
                     Contacts
                   </NavLink>
-                  <NavLink to="/login" className="link" onClick={handleClose}>
+                  <NavLink to={LOGIN} className="link" onClick={handleClose}>
                     Logout
                   </NavLink>
                 </div>
@@ -63,25 +65,25 @@ export const Header = ({ isLogged }) => {
           </IconButton>
         </div>
         <div className="logo">
-          <NavLink to="/books" className="link logo-link">
+          <NavLink to={BOOKS} className="link logo-link">
             <img className="logo-img" src={logo} alt="envelope" />
             Get Books
           </NavLink>
         </div>
       </div>
       <div className="header-btn-group">
-        <NavLink to="/contacts" className="link  contacts-link">
+        <NavLink to={CONTACTS} className="link  contacts-link">
           Contacts
         </NavLink>
-        <NavLink to="/cart" className="link  card-link">
+        <NavLink to={CART} className="link  card-link">
           Cart
         </NavLink>
         {isLogged ? (
-          <NavLink to="/login" className="link log-link">
+          <NavLink to={LOGIN} className="link log-link">
             Logout
           </NavLink>
         ) : (
-          <NavLink to="/login" className="link header-link log-link">
+          <NavLink to={LOGIN} className="link header-link log-link">
             Login
           </NavLink>
         )}
