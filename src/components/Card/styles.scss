@@ -1,0 +1,80 @@
+@import "../../styles/variables.scss";
+
+.card {
+  border: 1px solid $base__border-color;
+  border-radius: 5px;
+  margin: 18px 0;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 650px) {
+    max-width: 210px;
+  }
+
+  @media (min-width: 700px) {
+    max-width: 234px;
+  }
+
+  @media (min-width: 750px) {
+    max-width: 270px;
+  }
+
+  @media (min-width: 860px) {
+    max-width: 194px;
+  }
+
+  @media (min-width: 880px) {
+    max-width: 215px;
+  }
+
+  @media (min-width: 961px) {
+    max-width: 166px;
+  }
+  
+  @media (min-width: 1061px) {
+    max-width: 187px;
+  }
+
+  &:hover {
+    box-shadow: 0px 0px 13px -5px #000;
+  }
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 5px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-top: 0;
+}
+
+.card-title-container {
+  height: 45px;
+}
+
+.book-about {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.book-desc {
+  font-size: 11px;
+  color: $color_shadow_link;
+  margin: 10px 0;
+}
+
+.card-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+  padding: 0;
+}
