@@ -1,0 +1,12 @@
+.books {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px 8px;
+}
+
+.books-content {
+  padding: 30px 10%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

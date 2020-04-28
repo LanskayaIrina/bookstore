@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 
 import { validateLogin } from '../../utils/validations';
 
-import './LogIn.scss';
+import './styles.scss';
 
 export const LogIn = () => {
   const formik = useFormik({
