@@ -15,4 +15,11 @@ module.exports = {
     'no-unused-vars': 0,
     'no-console': 2,
   },
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+      },
+    },
+  },
 };

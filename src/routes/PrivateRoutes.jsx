@@ -3,15 +3,16 @@ import { bool } from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Books from './Books';
-import { FullCard } from '../components/FullCard';
+import { BOOK, BOOKS, CART, CONTACTS } from 'constants/pathNames';
+import { FullCard } from 'components/FullCard';
 
 export const PrivateRoutes = ({ isLogged }) => {
   const Routes = (
     <Switch>
-      <Route path="/contacts" />
-      <Route path="/cart" />
-      <Route exact path="/books" component={Books} />
-      <Route path="/books/:id" component={FullCard} />
+      <Route path={CONTACTS} />
+      <Route path={CART} />
+      <Route exact path={BOOKS} component={Books} />
+      <Route path={BOOK} component={FullCard} />
     </Switch>
   );
 

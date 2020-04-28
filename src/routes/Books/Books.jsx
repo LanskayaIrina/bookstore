@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { arrayOf, func, bool, shape, string, number } from 'prop-types';
 
-import { Card } from '../../components/Card';
-import { Spiner } from '../../components/Spiner/Spiner';
-import { BooksSlider } from '../../components/Slider/BooksSlider';
+import { Card } from 'components/Card';
+import { Spiner } from 'components/Spiner';
+import { BooksSlider } from 'components/Slider';
 
 import './styles.scss';
 

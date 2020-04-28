@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { element } from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
+import { BASE_URL } from 'constants/pathNames';
+
 import './styles.scss';
 
 export class ErrorBoundary extends Component {
@@ -33,7 +35,7 @@ export class ErrorBoundary extends Component {
           <h1 className="title">We apologize for temporary problems</h1>
           <p className="error-text">
             <span>You can return to </span>
-            <NavLink to="/" className="link">
+            <NavLink to={BASE_URL} className="link">
               Home
             </NavLink>
             <span> page.</span>
