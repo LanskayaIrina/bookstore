@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { bool } from 'prop-types';
+import { bool, number } from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Header = ({ isLogged }) => {
+export const Header = ({ isLogged, cartCount }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -51,7 +51,8 @@ export const Header = ({ isLogged }) => {
               >
                 <div className="menu-items">
                   <NavLink to={CART} className="link" onClick={handleClose}>
-                    Card
+                    <span>Cart</span>
+                    <span className="cart-count">{cartCount > 0 && isLogged ? cartCount : null}</span>
                   </NavLink>
                   <NavLink to={CONTACTS} className="link" onClick={handleClose}>
                     Contacts
@@ -71,12 +72,13 @@ export const Header = ({ isLogged }) => {
           </NavLink>
         </div>
       </div>
-      <div className="header-btn-group">
+      <div className="header-nav-links">
         <NavLink to={CONTACTS} className="link  contacts-link">
           Contacts
         </NavLink>
         <NavLink to={CART} className="link  card-link">
-          Cart
+          <span>Cart</span>
+          <span className="cart-count">{cartCount > 0 && isLogged ? cartCount : null}</span>
         </NavLink>
         {isLogged ? (
           <NavLink to={LOGIN} className="link log-link">
@@ -94,8 +96,10 @@ export const Header = ({ isLogged }) => {
 
 Header.propTypes = {
   isLogged: bool,
+  cartCount: number,
 };
 
 Header.defaultProps = {
   isLogged: false,
+  cartCount: 0,
 };

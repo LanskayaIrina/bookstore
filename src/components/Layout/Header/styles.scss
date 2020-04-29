@@ -1,4 +1,4 @@
-@import "../../../styles/variables.scss";
+@import 'styles/variables.scss';
 
 .header {
   display: flex;
@@ -14,7 +14,7 @@
   position: relative;
 }
 
-.header-btn-group {
+.header-nav-links {
   display: none;
   justify-content: flex-end;
 

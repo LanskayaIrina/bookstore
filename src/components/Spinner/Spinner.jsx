@@ -2,7 +2,7 @@ import React from 'react';
 
 import './styles.scss';
 
-export const Spiner = () => {
+export const Spinner = () => {
   return (
     <div className="spiner">
       <div className="lds-roller">

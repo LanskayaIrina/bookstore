@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@import 'styles/variables.scss';
 
 .card {
   border: 1px solid $base__border-color;
@@ -30,7 +30,7 @@
   @media (min-width: 961px) {
     max-width: 166px;
   }
-  
+
   @media (min-width: 1061px) {
     max-width: 187px;
   }
