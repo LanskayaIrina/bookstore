@@ -10,3 +10,14 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+.books-more {
+  display: flex;
+  height: 50px;
+  padding: 0px 0px 15px;
+  justify-content: center;
+}
+
+.books-more-btn {
+  border-radius: 15px;
+}
