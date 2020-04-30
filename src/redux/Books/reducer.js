@@ -1,8 +1,15 @@
-import { FETCH_PRODUCTS_BEGIN, FETCH_PRODUCTS_SUCCESS, PAGE_INCREMENT, CHECK_SHOW_MORE } from './actionTypes';
+import {
+  FETCH_PRODUCTS_BEGIN,
+  FETCH_PRODUCTS_SUCCESS,
+  FETCH_PRODUCT_BY_ID,
+  PAGE_INCREMENT,
+  CHECK_SHOW_MORE,
+} from './actionTypes';
 
 const initialState = {
   list: [],
   isFetching: false,
+  product: {},
   page: 1,
   showMore: true,
 };
@@ -21,6 +28,12 @@ export const cardsReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
+      };
+    case FETCH_PRODUCT_BY_ID:
+      return {
+        ...state,
+        product: payload.product,
+        isFetching: false,
       };
     case PAGE_INCREMENT:
       return {

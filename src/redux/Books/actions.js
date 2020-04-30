@@ -1,5 +1,11 @@
-import { FETCH_PRODUCTS_BEGIN, FETCH_PRODUCTS_SUCCESS, PAGE_INCREMENT, CHECK_SHOW_MORE } from './actionTypes';
-import { HttpService } from 'services/HttpService';
+import {
+  FETCH_PRODUCTS_BEGIN,
+  FETCH_PRODUCTS_SUCCESS,
+  PAGE_INCREMENT,
+  CHECK_SHOW_MORE,
+  FETCH_PRODUCT_BY_ID,
+} from './actionTypes';
+import { HttpService } from '../../services/HttpService';
 import { LIMIT_PRODUCTS } from 'constants/index';
 
 export const fetchProductsBegin = () => ({
@@ -17,6 +23,16 @@ export const getCards = (page = 1) => {
 
     return HttpService.get(`products?_page=${page}&_limit=${LIMIT_PRODUCTS}`).then((products) => {
       dispatch(fetchProductsSuccess(products));
+    });
+  };
+};
+
+export const getBookById = (id) => {
+  return (dispatch) => {
+    dispatch(fetchProductsBegin());
+
+    return HttpService.get(`products/${id}`).then((product) => {
+      dispatch({ type: FETCH_PRODUCT_BY_ID, payload: { product } });
     });
   };
 };

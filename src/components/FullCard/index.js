@@ -1,1 +1,0 @@
-export { FullCard } from './FullCard';
