@@ -13,3 +13,7 @@ export const getIsBookInCart = (state, props) =>
 
 export const getIsFavoriteBook = (state, props) =>
   state.favorites.products.find((product) => product === props?.book?.id || getBookIdParam(props));
+
+export const hasSearchResult = (state) => state.products.list.length > 0;
+
+export const getQueryString = (state) => state.products.searchQueryString;

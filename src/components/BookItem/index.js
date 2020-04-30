@@ -6,7 +6,6 @@ import { toggleFavoriteCard } from 'redux/Favorites/actions';
 import { getIsBookInCart, getIsFavoriteBook } from 'selector/bookItemSelectors';
 
 const mapStateToProps = (state, props) => ({
-  favorites: state.favorites.products,
   isBookInCart: getIsBookInCart(state, props),
   isBookInFavorite: getIsFavoriteBook(state, props),
 });
