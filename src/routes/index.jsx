@@ -3,17 +3,17 @@ import { bool } from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { BASE_URL, LOGIN } from 'constants/pathNames';
-import { PrivateRoutes } from './PrivateRoutes';
-import { LogIn } from './LogIn';
+import PrivateRoutes from './PrivateRoutes/index';
+import LogIn from './LogIn/index';
 
-export const AppRouter = ({ isLogged }) => {
+export const AppRouter = () => {
   return (
     <Switch>
       <Route exact path={BASE_URL}>
         <Redirect to={LOGIN} />
       </Route>
       <Route path={LOGIN} component={LogIn} />
-      <PrivateRoutes isLogged={isLogged} />
+      <PrivateRoutes />
     </Switch>
   );
 };

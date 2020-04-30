@@ -1,21 +1,27 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-import { validateLogin } from '../../utils/validations';
+import { BOOKS } from 'constants/pathNames';
+import { validateLogin } from 'utils/validations';
 
 import './styles.scss';
 
-export const LogIn = () => {
+export const LogIn = ({ authUser }) => {
+  const { push } = useHistory();
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
     validate: validateLogin,
-    onSubmit: () => <Redirect to="/" />,
+    onSubmit: () => {
+      authUser(true);
+      push(BOOKS);
+    },
     validateOnChange: false,
   });
 

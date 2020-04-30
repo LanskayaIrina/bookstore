@@ -2,11 +2,11 @@ import React from 'react';
 import { bool } from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Books from './Books';
-import { BOOK, BOOKS, CART, CONTACTS } from 'constants/pathNames';
+import Books from '../Books';
+import { BOOK, BOOKS, CART, CONTACTS, LOGIN } from 'constants/pathNames';
 import { FullCard } from 'components/FullCard';
 
-export const PrivateRoutes = ({ isLogged }) => {
+export const PrivateRoutes = ({ isAuthorized }) => {
   const Routes = (
     <Switch>
       <Route path={CONTACTS} />
@@ -16,9 +16,9 @@ export const PrivateRoutes = ({ isLogged }) => {
     </Switch>
   );
 
-  const RedirectToLogin = <Redirect to="/login" />;
+  const RedirectToLogin = <Redirect to={LOGIN} />;
 
-  return isLogged ? Routes : RedirectToLogin;
+  return isAuthorized ? Routes : RedirectToLogin;
 };
 
 PrivateRoutes.propTypes = {
