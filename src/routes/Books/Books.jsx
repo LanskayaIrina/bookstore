@@ -1,16 +1,31 @@
 import React, { useEffect } from 'react';
-import { arrayOf, func, bool, shape, number } from 'prop-types';
+import { arrayOf, func, bool, shape, number, string } from 'prop-types';
 
 import BookItem from 'components/BookItem';
 import { Spinner } from 'components/Spinner/Spinner';
 import { BooksSlider } from 'components/Slider';
+import SearchBar from 'components/SearchBar';
 import { bookPropTypes } from 'propTypes/books';
 
 import './styles.scss';
 
-export const Books = ({ list, getCards, isFetching, page, showMore, pageIncrement, checkShowMore }) => {
+export const Books = ({
+  list,
+  getCards,
+  isFetching,
+  page,
+  showMore,
+  pageIncrement,
+  checkShowMore,
+  queryString,
+  searchProducts,
+}) => {
   const handleMoreCards = () => {
-    getCards(page);
+    if (queryString) {
+      searchProducts(queryString, page);
+    } else {
+      getCards(page);
+    }
     pageIncrement();
   };
 
@@ -27,6 +42,7 @@ export const Books = ({ list, getCards, isFetching, page, showMore, pageIncremen
     <div className="books">
       <>
         <BooksSlider />
+        <SearchBar />
         <div className="books-content">
           {list.map((book) => (
             <BookItem key={book.id} book={book} />
@@ -54,6 +70,8 @@ Books.propTypes = {
   pageIncrement: func.isRequired,
   checkShowMore: func.isRequired,
   location: shape({}).isRequired,
+  queryString: string.isRequired,
+  searchProducts: func.isRequired,
 };
 
 Books.defaultProps = {

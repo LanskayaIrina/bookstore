@@ -3,9 +3,12 @@ import {
   FETCH_PRODUCTS_SUCCESS,
   PAGE_INCREMENT,
   CHECK_SHOW_MORE,
+  SEARCH_RESULT,
+  ENTRY_QUERY_STRING,
+  RESET_PAGE,
   FETCH_PRODUCT_BY_ID,
 } from './actionTypes';
-import { HttpService } from '../../services/HttpService';
+import { HttpService } from 'services/HttpService';
 import { LIMIT_PRODUCTS } from 'constants/index';
 
 export const fetchProductsBegin = () => ({
@@ -53,4 +56,32 @@ export const pageIncrement = () => (dispatch) => {
   dispatch({
     type: PAGE_INCREMENT,
   });
+};
+
+export const entryQuerystring = (queryString) => (dispatch) =>
+  dispatch({
+    type: ENTRY_QUERY_STRING,
+    payload: { queryString },
+  });
+
+export const searchProducts = (queryString, page = 1) => {
+  return (dispatch) => {
+    dispatch(fetchProductsBegin());
+    return HttpService.get(`products?_page=${page}&_limit=${LIMIT_PRODUCTS}&title_like=${queryString}`).then(
+      (products) => {
+        if (page > 1) {
+          dispatch({
+            type: FETCH_PRODUCTS_SUCCESS,
+            payload: { products },
+          });
+        } else {
+          dispatch({ type: RESET_PAGE });
+          dispatch({
+            type: SEARCH_RESULT,
+            payload: { products },
+          });
+        }
+      }
+    );
+  };
 };
