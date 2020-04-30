@@ -1,0 +1,49 @@
+.book {
+  margin: 30px 10%
+}
+
+.book-info {
+  margin: 15px;
+}
+
+.book-full-info {
+  margin: 20px;
+}
+
+.book-media {
+  max-width: 600px;
+  float: left;
+  margin: 0 15px 10px;
+}
+
+.book-bookmark {
+  margin-right: 20px;
+}
+
+.book-bookmark-media {
+  &:hover {
+    color:#fdae1c;
+  }  
+}
+
+.book-basket-media {
+  &:hover {
+    color:#73b6dd;
+  }
+}
+
+.book-button {
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.go-back {
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: inherit;
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+}
+

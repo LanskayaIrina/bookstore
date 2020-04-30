@@ -1,0 +1,96 @@
+import React, { useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import { func, bool, shape, string, number } from 'prop-types';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+
+import { Spinner } from 'components/Spinner/Spinner';
+import { bookPropTypes } from 'propTypes/books';
+
+import './styles.scss';
+
+export const BookInfo = ({
+  getBookById,
+  toggleProductToCart,
+  toggleFavoriteCard,
+  isBookInFavorite,
+  isBookInCart,
+  isFetching,
+  book,
+}) => {
+  const { goBack } = useHistory();
+  const { id } = useParams();
+  const { title, img, description } = book;
+
+  const onClickFavorite = (e) => {
+    e.stopPropagation();
+    toggleFavoriteCard(book.id);
+  };
+
+  const onClickCart = (e) => {
+    e.stopPropagation();
+    toggleProductToCart(book.id);
+  };
+
+  const onClickBack = () => goBack();
+
+  useEffect(() => {
+    if (!book.id) {
+      getBookById(id);
+    }
+  }, []);
+
+  return (
+    <div className="book">
+      <button className="go-back" type="button" onClick={onClickBack}>
+        <KeyboardBackspaceIcon />
+        Back
+      </button>
+      {isFetching ? (
+        <Spinner />
+      ) : (
+        <div className="book-info">
+          <img className="book-media" src={img} alt={title} />
+          <div className="book-full-info">
+            <h2 className="title">{title}</h2>
+            <p className="description">{description}</p>
+          </div>
+          <button
+            className="book-bookmark book-button"
+            type="button"
+            onClick={onClickFavorite}
+            style={{
+              background: isBookInFavorite ? 'yellow' : '',
+            }}
+          >
+            <StarBorderIcon classes={{ root: 'book-bookmark-media' }} />
+          </button>
+          <button
+            className="book-basket book-button"
+            type="button"
+            onClick={onClickCart}
+            style={{
+              background: isBookInCart ? 'red' : '',
+            }}
+          >
+            <ShoppingBasketIcon classes={{ root: 'book-basket-media' }} />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+BookInfo.propTypes = {
+  book: bookPropTypes,
+  getBookById: func.isRequired,
+  isFetching: bool.isRequired,
+  toggleFavoriteCard: func.isRequired,
+  toggleProductToCart: func.isRequired,
+};
+
+BookInfo.defaultProps = {
+  book: {},
+  isFetching: false,
+};
