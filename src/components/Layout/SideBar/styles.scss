@@ -1,0 +1,12 @@
+@import 'styles/variables.scss';
+
+.side-bar {
+  width: 145px;
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  top: 100px;
+  background-color: $white;
+  z-index: 5;
+  border-radius: 0 5px 5px 0;
+}

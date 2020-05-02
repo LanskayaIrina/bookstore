@@ -6,12 +6,13 @@ import { Spinner } from 'components/Spinner/Spinner';
 import { BooksSlider } from 'components/Slider';
 import SearchBar from 'components/SearchBar';
 import { bookPropTypes } from 'propTypes/books';
+import SideBar from 'components/Layout/SideBar';
 
 import './styles.scss';
 
 export const Books = ({
   list,
-  getCards,
+  getProducts,
   isFetching,
   page,
   showMore,
@@ -19,18 +20,24 @@ export const Books = ({
   checkShowMore,
   queryString,
   searchProducts,
+  filterString,
+  filterCategory,
 }) => {
   const handleMoreCards = () => {
-    if (queryString) {
+    if (queryString && filterString) {
+      searchProducts(`${queryString}${filterString}`, page);
+    } else if (queryString) {
       searchProducts(queryString, page);
+    } else if (filterString) {
+      filterCategory(filterString, page);
     } else {
-      getCards(page);
+      getProducts(page);
     }
     pageIncrement();
   };
 
   useEffect(() => {
-    getCards();
+    getProducts();
     pageIncrement();
   }, []);
 
@@ -40,22 +47,25 @@ export const Books = ({
 
   return (
     <div className="books">
-      <>
-        <BooksSlider />
-        <SearchBar />
-        <div className="books-content">
-          {list.map((book) => (
-            <BookItem key={book.id} book={book} />
-          ))}
+      <div className="books-page">
+        <SideBar filterCategory={filterCategory} page={page} />
+        <div className="container">
+          <BooksSlider />
+          <SearchBar />
+          <div className="books-items">
+            {list.map((book) => (
+              <BookItem key={book.id} book={book} />
+            ))}
+          </div>
+          {isFetching ? <Spinner /> : null}
+          <div className="books-more">
+            {showMore ? (
+              <button className="books-more-btn" onClick={handleMoreCards}>
+                Show more
+              </button>
+            ) : null}
+          </div>
         </div>
-      </>
-      {isFetching ? <Spinner /> : null}
-      <div className="books-more">
-        {showMore ? (
-          <button className="books-more-btn" onClick={handleMoreCards}>
-            Show more
-          </button>
-        ) : null}
       </div>
     </div>
   );
@@ -63,7 +73,7 @@ export const Books = ({
 
 Books.propTypes = {
   list: arrayOf(bookPropTypes).isRequired,
-  getCards: func.isRequired,
+  getProducts: func.isRequired,
   isFetching: bool.isRequired,
   page: number.isRequired,
   showMore: bool.isRequired,
@@ -72,12 +82,4 @@ Books.propTypes = {
   location: shape({}).isRequired,
   queryString: string.isRequired,
   searchProducts: func.isRequired,
-};
-
-Books.defaultProps = {
-  title: '',
-  price: null,
-  description: '',
-  img: '',
-  category: '',
 };

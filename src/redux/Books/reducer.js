@@ -3,10 +3,13 @@ import {
   FETCH_PRODUCTS_SUCCESS,
   PAGE_INCREMENT,
   CHECK_SHOW_MORE,
+  FILTERED_CATEGORY,
+  SAVE_FILTER_STRING,
   SEARCH_RESULT,
   ENTRY_QUERY_STRING,
   RESET_PAGE,
   FETCH_PRODUCT_BY_ID,
+  GET_CATEGORIES,
 } from './actionTypes';
 
 const initialState = {
@@ -15,7 +18,9 @@ const initialState = {
   product: {},
   page: 1,
   showMore: true,
+  filterString: '',
   searchQueryString: '',
+  categories: [],
 };
 
 export const cardsReducer = (state = initialState, action) => {
@@ -54,6 +59,17 @@ export const cardsReducer = (state = initialState, action) => {
         ...state,
         showMore: payload.showMore,
       };
+    case SAVE_FILTER_STRING:
+      return {
+        ...state,
+        filterString: payload.string,
+      };
+    case FILTERED_CATEGORY:
+      return {
+        ...state,
+        list: [...payload.products],
+        isFetching: false,
+      };
     case SEARCH_RESULT:
       return {
         ...state,
@@ -64,6 +80,11 @@ export const cardsReducer = (state = initialState, action) => {
       return {
         ...state,
         searchQueryString: action.payload.queryString,
+      };
+    case GET_CATEGORIES:
+      return {
+        ...state,
+        categories: [...payload.categories],
       };
     default:
       return state;

@@ -7,6 +7,9 @@ import {
   ENTRY_QUERY_STRING,
   RESET_PAGE,
   FETCH_PRODUCT_BY_ID,
+  FILTERED_CATEGORY,
+  SAVE_FILTER_STRING,
+  GET_CATEGORIES,
 } from './actionTypes';
 import { HttpService } from 'services/HttpService';
 import { LIMIT_PRODUCTS } from 'constants/index';
@@ -20,7 +23,7 @@ export const fetchProductsSuccess = (products) => ({
   payload: { products },
 });
 
-export const getCards = (page = 1) => {
+export const getProducts = (page = 1) => {
   return (dispatch) => {
     dispatch(fetchProductsBegin());
 
@@ -58,6 +61,44 @@ export const pageIncrement = () => (dispatch) => {
   });
 };
 
+export const entryFilterString = (string) => (dispatch) => {
+  dispatch({
+    type: SAVE_FILTER_STRING,
+    payload: { string },
+  });
+};
+
+export const filterCategory = (categoriesArray, page = 1, extraString) => {
+  const createdFilterQueryString = categoriesArray.reduce((queryString, category) => {
+    return queryString + `&category=${category}`;
+  }, '');
+
+  const createdQueryString = `${createdFilterQueryString}${extraString ? '&title_like=' + extraString : ''}`;
+
+  return (dispatch) => {
+    dispatch(fetchProductsBegin());
+
+    return HttpService.get(`products?_page=${page}&_limit=${LIMIT_PRODUCTS}${createdQueryString}`).then((products) => {
+      dispatch(entryFilterString(createdFilterQueryString));
+      if (page > 1) {
+        dispatch({
+          type: FETCH_PRODUCTS_SUCCESS,
+          payload: { products },
+        });
+      } else {
+        dispatch({
+          type: RESET_PAGE,
+        });
+
+        dispatch({
+          type: FILTERED_CATEGORY,
+          payload: { products },
+        });
+      }
+    });
+  };
+};
+
 export const entryQuerystring = (queryString) => (dispatch) =>
   dispatch({
     type: ENTRY_QUERY_STRING,
@@ -84,4 +125,13 @@ export const searchProducts = (queryString, page = 1) => {
       }
     );
   };
+};
+
+export const getCategories = () => (dispatch) => {
+  HttpService.get('categories').then((categories) => {
+    dispatch({
+      type: GET_CATEGORIES,
+      payload: { categories },
+    });
+  });
 };

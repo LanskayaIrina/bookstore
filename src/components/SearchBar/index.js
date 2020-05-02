@@ -6,6 +6,7 @@ import { hasSearchResult } from 'selector/bookItemSelectors';
 
 const mapStateToProps = (state) => ({
   hasSearchResult: hasSearchResult(state),
+  filterString: state.products.filterString,
 });
 
 const mapDispatchToProps = {

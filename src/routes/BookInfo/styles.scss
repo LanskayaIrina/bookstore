@@ -1,19 +1,20 @@
 .book {
-  margin: 30px 10%
+  margin: 30px 0;
 }
 
-.book-info {
+.book-detail {
   margin: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.book-full-info {
-  margin: 20px;
-}
+.book-detail-info {
+  width: 100%;
 
-.book-media {
-  max-width: 600px;
-  float: left;
-  margin: 0 15px 10px;
+  @media (min-width: 1023px) {
+    max-width: 480px;
+  }
 }
 
 .book-bookmark {
@@ -22,13 +23,13 @@
 
 .book-bookmark-media {
   &:hover {
-    color:#fdae1c;
-  }  
+    color: #fdae1c;
+  }
 }
 
 .book-basket-media {
   &:hover {
-    color:#73b6dd;
+    color: #73b6dd;
   }
 }
 
@@ -46,4 +47,3 @@
   cursor: pointer;
   outline: none;
 }
-

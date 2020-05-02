@@ -1,9 +1,6 @@
 .link {
   border: none;
   padding: 5px 10px;
-  margin-right: 10px;
-  border-radius: 10px;
-  width: 70px;
   text-align: center;
   color: $color_link;
 
@@ -13,8 +10,13 @@
   }
 
   .header & {
-    box-shadow: 2px 2px 2px $color_shadow_link;
     position: relative;
+    padding: 15px 20px;
+    transition: $transition_bg-color;
+
+    &:hover {
+      background-color: $hover_link-color;
+    }
   }
 
   .logo & {
