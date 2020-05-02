@@ -3,16 +3,17 @@ import {
   FETCH_PRODUCTS_SUCCESS,
   PAGE_INCREMENT,
   CHECK_SHOW_MORE,
-  SEARCH_RESULT,
-  ENTRY_QUERY_STRING,
+  SAVE_TO_FIRST_PAGE,
+  SAVE_SEARCH_QUERY_STRING,
   RESET_PAGE,
   FETCH_PRODUCT_BY_ID,
-  FILTERED_CATEGORY,
-  SAVE_FILTER_STRING,
+  SAVE_FILTER_PARAM,
   GET_CATEGORIES,
 } from './actionTypes';
 import { HttpService } from 'services/HttpService';
 import { LIMIT_PRODUCTS } from 'constants/index';
+
+const defaultUrl = `products?_limit=${LIMIT_PRODUCTS}`;
 
 export const fetchProductsBegin = () => ({
   type: FETCH_PRODUCTS_BEGIN,
@@ -22,16 +23,6 @@ export const fetchProductsSuccess = (products) => ({
   type: FETCH_PRODUCTS_SUCCESS,
   payload: { products },
 });
-
-export const getProducts = (page = 1) => {
-  return (dispatch) => {
-    dispatch(fetchProductsBegin());
-
-    return HttpService.get(`products?_page=${page}&_limit=${LIMIT_PRODUCTS}`).then((products) => {
-      dispatch(fetchProductsSuccess(products));
-    });
-  };
-};
 
 export const getBookById = (id) => {
   return (dispatch) => {
@@ -61,71 +52,18 @@ export const pageIncrement = () => (dispatch) => {
   });
 };
 
-export const entryFilterString = (string) => (dispatch) => {
+export const entryFilterParam = (param) => (dispatch) => {
   dispatch({
-    type: SAVE_FILTER_STRING,
-    payload: { string },
+    type: SAVE_FILTER_PARAM,
+    payload: { param },
   });
 };
 
-export const filterCategory = (categoriesArray, page = 1, extraString) => {
-  const createdFilterQueryString = categoriesArray.reduce((queryString, category) => {
-    return queryString + `&category=${category}`;
-  }, '');
-
-  const createdQueryString = `${createdFilterQueryString}${extraString ? '&title_like=' + extraString : ''}`;
-
-  return (dispatch) => {
-    dispatch(fetchProductsBegin());
-
-    return HttpService.get(`products?_page=${page}&_limit=${LIMIT_PRODUCTS}${createdQueryString}`).then((products) => {
-      dispatch(entryFilterString(createdFilterQueryString));
-      if (page > 1) {
-        dispatch({
-          type: FETCH_PRODUCTS_SUCCESS,
-          payload: { products },
-        });
-      } else {
-        dispatch({
-          type: RESET_PAGE,
-        });
-
-        dispatch({
-          type: FILTERED_CATEGORY,
-          payload: { products },
-        });
-      }
-    });
-  };
-};
-
-export const entryQuerystring = (queryString) => (dispatch) =>
+export const entrySearchQueryString = (queryString) => (dispatch) =>
   dispatch({
-    type: ENTRY_QUERY_STRING,
+    type: SAVE_SEARCH_QUERY_STRING,
     payload: { queryString },
   });
-
-export const searchProducts = (queryString, page = 1) => {
-  return (dispatch) => {
-    dispatch(fetchProductsBegin());
-    return HttpService.get(`products?_page=${page}&_limit=${LIMIT_PRODUCTS}&title_like=${queryString}`).then(
-      (products) => {
-        if (page > 1) {
-          dispatch({
-            type: FETCH_PRODUCTS_SUCCESS,
-            payload: { products },
-          });
-        } else {
-          dispatch({ type: RESET_PAGE });
-          dispatch({
-            type: SEARCH_RESULT,
-            payload: { products },
-          });
-        }
-      }
-    );
-  };
-};
 
 export const getCategories = () => (dispatch) => {
   HttpService.get('categories').then((categories) => {
@@ -134,4 +72,65 @@ export const getCategories = () => (dispatch) => {
       payload: { categories },
     });
   });
+};
+
+export const urlBuilder = (
+  options = {
+    page: 1,
+  }
+) => {
+  /**
+   *  @param {object} options
+   *  @param {string} options.string your handmade query-string
+   *  @param {string} options.single if you want get single product
+   *
+   *  You can write query key as a options key, and param
+   *  as a key value it`s like title_like: 'bla-bla' or id: 2
+   */
+  const { page } = options;
+
+  const queryKey = Object.keys(options);
+
+  const createdQueryString = queryKey.reduce((newQueryString, key) => {
+    // * create extra query string
+    const optionsValue = options[key];
+    const queryParamIsArray = typeof optionsValue === 'object';
+
+    if (queryParamIsArray) {
+      const concatQueryParam = optionsValue.reduce((concatParam, param) => {
+        return (concatParam += `&${key}=${param}`);
+      }, '');
+
+      return (newQueryString += concatQueryParam);
+    } else if (key === 'string') {
+      return (newQueryString += options[key]);
+    } else if (key === 'single') {
+      return (newQueryString += `${options[key]}`);
+    } else if (!optionsValue) {
+      return (newQueryString += '');
+    }
+
+    return (newQueryString += `&${key}=${options[key]}`);
+  }, '');
+
+  return (dispatch) => {
+    dispatch(fetchProductsBegin());
+
+    return HttpService.get(`${defaultUrl}${createdQueryString}`).then((products) => {
+      if (page === 1) {
+        dispatch({
+          type: RESET_PAGE,
+        });
+        dispatch({
+          type: SAVE_TO_FIRST_PAGE,
+          payload: { products },
+        });
+      } else {
+        dispatch({
+          type: FETCH_PRODUCTS_SUCCESS,
+          payload: { products },
+        });
+      }
+    });
+  };
 };

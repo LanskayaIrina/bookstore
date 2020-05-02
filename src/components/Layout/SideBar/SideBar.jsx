@@ -5,7 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import './styles.scss';
 
-export const SideBar = ({ filterCategory, getCategories, categories, searchString, hasCategories }) => {
+export const SideBar = ({ getCategories, categories, searchString, hasCategories, urlBuilder, entryFilterParam }) => {
   const [categoryIsChecked, setCategoryIsChecked] = useState({});
 
   const [categoryForRequest, setCategoryForRequest] = useState([]);
@@ -26,7 +26,13 @@ export const SideBar = ({ filterCategory, getCategories, categories, searchStrin
   }, [categories]);
 
   useEffect(() => {
-    if (categoryForRequest.length) filterCategory(categoryForRequest, 1, searchString);
+    urlBuilder({
+      page: 1,
+      category: categoryForRequest,
+      title_like: searchString,
+    });
+
+    entryFilterParam(categoryForRequest);
   }, [categoryForRequest.length]);
 
   const onCheck = (event) => {
@@ -46,7 +52,6 @@ export const SideBar = ({ filterCategory, getCategories, categories, searchStrin
   const clearAllFilters = () => {
     setCategoryIsChecked(createCategories);
     setCategoryForRequest([]);
-    filterCategory(categoryForRequest, 1, searchString);
   };
 
   return hasCategories ? (

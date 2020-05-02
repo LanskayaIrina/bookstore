@@ -12,32 +12,26 @@ import './styles.scss';
 
 export const Books = ({
   list,
-  getProducts,
   isFetching,
   page,
   showMore,
   pageIncrement,
   checkShowMore,
-  queryString,
-  searchProducts,
-  filterString,
-  filterCategory,
+  querySearchString,
+  filterParam,
+  urlBuilder,
 }) => {
   const handleMoreCards = () => {
-    if (queryString && filterString) {
-      searchProducts(`${queryString}${filterString}`, page);
-    } else if (queryString) {
-      searchProducts(queryString, page);
-    } else if (filterString) {
-      filterCategory(filterString, page);
-    } else {
-      getProducts(page);
-    }
+    urlBuilder({
+      category: filterParam,
+      page: 1,
+      title_like: querySearchString,
+    });
     pageIncrement();
   };
 
   useEffect(() => {
-    getProducts();
+    urlBuilder();
     pageIncrement();
   }, []);
 
@@ -48,7 +42,7 @@ export const Books = ({
   return (
     <div className="books">
       <div className="books-page">
-        <SideBar filterCategory={filterCategory} page={page} />
+        <SideBar page={page} />
         <div className="container">
           <BooksSlider />
           <SearchBar />
@@ -81,5 +75,6 @@ Books.propTypes = {
   checkShowMore: func.isRequired,
   location: shape({}).isRequired,
   queryString: string.isRequired,
+  filterParam: arrayOf(string),
   searchProducts: func.isRequired,
 };
