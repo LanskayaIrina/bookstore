@@ -3,6 +3,13 @@
   width: 100%;
   padding-bottom: 50%;
 
+  .cart-product & {
+    @media (min-width: 1024px) {
+      width: 50%;
+      padding-bottom: 0;
+    }
+  }
+  
   .book-detail & {
     @media (min-width: 1023px) {
       width: 50%;

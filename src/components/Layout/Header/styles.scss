@@ -10,12 +10,8 @@
 }
 
 .header-nav-links {
-  display: none;
+  display: flex;
   justify-content: flex-end;
-
-  @media (min-width: 710px) {
-    display: flex;
-  }
 }
 
 .menu-items {

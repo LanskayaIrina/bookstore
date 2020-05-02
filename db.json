@@ -7999,7 +7999,47 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis tellus vel libero sagittis finibus dapibus.",
       "img": "https://unsplash.it/1280/720?image=853",
       "category": "Children"
-    }
+    },
+    [
+      {
+        "id": 3,
+        "count": 1
+      },
+      {
+        "id": 0,
+        "count": 1
+      }
+    ],
+    [
+      {
+        "id": 0,
+        "count": 2
+      },
+      {
+        "id": 1,
+        "count": 1
+      },
+      {
+        "id": 2,
+        "count": 2
+      }
+    ],
+    [
+      {
+        "id": 3,
+        "count": 1
+      }
+    ],
+    [
+      {
+        "id": 2,
+        "count": 1
+      },
+      {
+        "id": 3,
+        "count": 4
+      }
+    ]
   ],
   "categories": ["Adventure", "Romance", "Children", "Education", "Fantasy", "History", "Horror", "Humor"]
 }
