@@ -1,0 +1,49 @@
+@import "styles/variables.scss";
+
+.cart-product {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $base__border-color;
+  border-radius: 5px;
+  max-width: 310px;
+  margin: 25px;
+
+  @media (min-width: 1024px) {
+    max-width: 100%;
+    flex-direction: row;
+    height: 300px;
+  }
+}
+
+.product-title {
+  text-align: left;
+}
+
+.book-info {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
+
+  @media (min-width: 1024px) {
+    width: 30%;
+  }
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.product-price {
+  text-align: center;
+
+  @media (min-width: 1024px) {
+    text-align: right;
+  }
+}
+
+.product-counter {
+  display: flex;
+}

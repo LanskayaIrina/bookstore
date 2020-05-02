@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { func, bool, shape, string, number } from 'prop-types';
+import { func, bool } from 'prop-types';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
