@@ -1,8 +1,12 @@
 @import '~normalize.css';
 @import './styles/main.scss';
 
+html,
 body {
-  min-height: 100vh;
+  height: 100%;
+}
+
+body {
   font-size: $base__font-size;
   font-family: $base__font-family;
 }
@@ -33,7 +37,7 @@ ul {
 }
 
 #root {
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 .cart-count {

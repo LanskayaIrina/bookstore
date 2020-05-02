@@ -2,15 +2,10 @@
 
 .header {
   display: flex;
-  height: 10vh;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
-  padding: 10px 10%;
-  background-color: $bg_header-container;
-  position: sticky;
-  top: 0;
-  box-shadow: 0 3px 3px $color_shadow_header;
+  padding: 0 15px;
+  background-color: $bg_header;
   position: relative;
 }
 
@@ -23,17 +18,6 @@
   }
 }
 
-.logo-btn-group {
-  display: flex;
-  width: 80%;
-  justify-content: space-between;
-  align-items: center;
-
-  @media (min-width: 710px) {
-    width: 50%;
-  }
-}
-
 .menu-items {
   display: flex;
   flex-direction: column;
@@ -42,11 +26,15 @@
 }
 
 .log-link {
-  background-color: $color_log-link;
+  &:hover {
+    background-color: $color_log-link;
+  }
 }
 
 .card-link {
-  background-color: $color_card-link;
+  &:hover {
+    background-color: $color_card-link;
+  }
 }
 
 .contacts-link {
@@ -86,17 +74,15 @@
 }
 
 .simple-menu {
-  top: -40px;
-  left: -50px;
+  top: -20px;
+  left: -3px;
   width: 200px;
   height: 100vh;
   position: absolute;
-  background-color: $bg_header-container;
-  border-right: 1px solid $base__border-color;
+  background-color: $white;
   box-shadow: 100px 0 100px 1000px #00000062;
-  z-index: 5;
+  z-index: 6;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  padding: 20px 5px 0 5px;
 }

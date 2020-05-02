@@ -2,6 +2,12 @@
   position: relative;
   width: 100%;
   padding-bottom: 50%;
+
+  .book-detail & {
+    @media (min-width: 1023px) {
+      width: 50%;
+    }
+  }
 }
 
 .img {
@@ -13,4 +19,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+
+  .book-detail & {
+    @media (min-width: 1023px) {
+      max-width: 600px;
+    }
+  }
 }

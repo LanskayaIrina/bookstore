@@ -8,10 +8,13 @@ $base__linkHover-color: #4b4b4b;
 $black: #242424;
 $white: #fff;
 $pay_attention: #1c20ff;
-$bg_header-container: #fff;
+$bg_header: #1f121b23;
 $color_link: #201f1f;
 $color_log-link: #1c78f0;
 $color_card-link: #bdbbbb;
 $color_shadow_link: #464444;
 $color_shadow_header: #c0bdbd;
 $color_cart-count: #fd2e8f;
+
+$transition_bg-color: background-color 0.4s;
+$hover_link-color: $white;

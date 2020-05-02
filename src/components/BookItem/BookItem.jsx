@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { string, number, shape, func, arrayOf } from 'prop-types';
+import { number, func, arrayOf } from 'prop-types';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
@@ -25,7 +25,7 @@ export const BookItem = ({ book, toggleProductToCart, toggleFavoriteCard, isBook
     <Link key={id} to={`books/${id}`}>
       <div className="card">
         <div className="img-block">
-          <img className="img" src={img} alt="book" />
+          <img className="img" src={img} alt={title} />
         </div>
         <div className="card-title-container">
           <h2 className="card-title">{title}</h2>

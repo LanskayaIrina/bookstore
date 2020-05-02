@@ -50,32 +50,34 @@ export const BookInfo = ({
       {isFetching ? (
         <Spinner />
       ) : (
-        <div className="book-info">
-          <img className="book-media" src={img} alt={title} />
-          <div className="book-full-info">
+        <div className="book-detail">
+          <div className="img-block">
+            <img className="img" src={img} alt={title} />
+          </div>
+          <div className="book-detail-info">
             <h2 className="title">{title}</h2>
             <p className="description">{description}</p>
+            <button
+              className="book-bookmark book-button"
+              type="button"
+              onClick={onClickFavorite}
+              style={{
+                background: isBookInFavorite ? 'yellow' : '',
+              }}
+            >
+              <StarBorderIcon classes={{ root: 'book-bookmark-media' }} />
+            </button>
+            <button
+              className="book-basket book-button"
+              type="button"
+              onClick={onClickCart}
+              style={{
+                background: isBookInCart ? 'red' : '',
+              }}
+            >
+              <ShoppingBasketIcon classes={{ root: 'book-basket-media' }} />
+            </button>
           </div>
-          <button
-            className="book-bookmark book-button"
-            type="button"
-            onClick={onClickFavorite}
-            style={{
-              background: isBookInFavorite ? 'yellow' : '',
-            }}
-          >
-            <StarBorderIcon classes={{ root: 'book-bookmark-media' }} />
-          </button>
-          <button
-            className="book-basket book-button"
-            type="button"
-            onClick={onClickCart}
-            style={{
-              background: isBookInCart ? 'red' : '',
-            }}
-          >
-            <ShoppingBasketIcon classes={{ root: 'book-basket-media' }} />
-          </button>
         </div>
       )}
     </div>
