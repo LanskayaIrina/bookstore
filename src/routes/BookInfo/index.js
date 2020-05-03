@@ -7,7 +7,6 @@ import { toggleProductToCart } from 'redux/Cart/actions';
 import { getProductFromState, getIsBookInCart, getIsFavoriteBook } from 'selector/bookItemSelectors';
 
 const mapStateToProps = (state, props) => ({
-  isFetching: state.products.isFetching,
   book: getProductFromState(state, props) || state.products.product,
   isBookInCart: getIsBookInCart(state, props),
   isBookInFavorite: getIsFavoriteBook(state, props),
