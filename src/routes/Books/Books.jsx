@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { arrayOf, func, bool, shape, number, string } from 'prop-types';
+import { trackPromise } from 'react-promise-tracker';
 
 import BookItem from 'components/BookItem';
-import { Spinner } from 'components/Spinner/Spinner';
 import { BooksSlider } from 'components/Slider';
 import SearchBar from 'components/SearchBar';
 import { bookPropTypes } from 'propTypes/books';
@@ -12,7 +12,6 @@ import './styles.scss';
 
 export const Books = ({
   list,
-  isFetching,
   page,
   showMore,
   pageIncrement,
@@ -31,7 +30,7 @@ export const Books = ({
   };
 
   useEffect(() => {
-    urlBuilder();
+    trackPromise(urlBuilder());
     pageIncrement();
   }, []);
 
@@ -51,7 +50,6 @@ export const Books = ({
               <BookItem key={book.id} book={book} />
             ))}
           </div>
-          {isFetching ? <Spinner /> : null}
           <div className="books-more">
             {showMore ? (
               <button className="books-more-btn" onClick={handleMoreCards}>
@@ -67,8 +65,7 @@ export const Books = ({
 
 Books.propTypes = {
   list: arrayOf(bookPropTypes).isRequired,
-  getProducts: func.isRequired,
-  isFetching: bool.isRequired,
+  getCards: func.isRequired,
   page: number.isRequired,
   showMore: bool.isRequired,
   pageIncrement: func.isRequired,

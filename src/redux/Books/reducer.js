@@ -13,7 +13,6 @@ import {
 
 const initialState = {
   list: [],
-  isFetching: false,
   product: {},
   page: 1,
   showMore: true,
@@ -30,18 +29,15 @@ export const cardsReducer = (state = initialState, action) => {
       return {
         ...state,
         list: [...state.list, ...payload.products],
-        isFetching: false,
       };
     case FETCH_PRODUCTS_BEGIN:
       return {
         ...state,
-        isFetching: true,
       };
     case FETCH_PRODUCT_BY_ID:
       return {
         ...state,
         product: payload.product,
-        isFetching: false,
       };
     case PAGE_INCREMENT:
       return {
@@ -67,7 +63,6 @@ export const cardsReducer = (state = initialState, action) => {
       return {
         ...state,
         list: [...payload.products],
-        isFetching: false,
       };
     case SAVE_SEARCH_QUERY_STRING:
       return {
