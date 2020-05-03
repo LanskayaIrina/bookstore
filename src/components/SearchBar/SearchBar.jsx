@@ -4,18 +4,20 @@ import TextField from '@material-ui/core/TextField';
 
 import './styles.scss';
 
-export const SearchBar = ({ searchProducts, hasSearchResult, entryQuerystring, filterString }) => {
+export const SearchBar = ({ urlBuilder, hasSearchResult, entrySearchQueryString, filterParam }) => {
   const startSearch = (event) => {
     const {
       target: { value },
     } = event;
-    entryQuerystring(value);
+
+    entrySearchQueryString(value);
+
     setTimeout(() => {
-      if (filterString) {
-        searchProducts(`${value}${filterString}`);
-      } else {
-        searchProducts(value);
-      }
+      urlBuilder({
+        page: 1,
+        title_like: value,
+        category: filterParam,
+      });
     }, 3000);
   };
 
@@ -28,9 +30,9 @@ export const SearchBar = ({ searchProducts, hasSearchResult, entryQuerystring, f
 };
 
 SearchBar.propTypes = {
-  searchProducts: func.isRequired,
+  urlBuilder: func.isRequired,
   hasSearchResult: bool.isRequired,
-  entryQuerystring: func.isRequired,
+  entrySearchQueryString: func.isRequired,
   filterString: string,
 };
 

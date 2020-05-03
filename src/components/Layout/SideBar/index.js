@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { SideBar } from './SideBar';
-import { getCategories } from 'redux/Books/actions';
+import { getCategories, urlBuilder, entryFilterParam } from 'redux/Books/actions';
 
 const mapStateToProps = (state) => ({
   categories: state.products.categories,
@@ -11,6 +11,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getCategories,
+  urlBuilder,
+  entryFilterParam,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SideBar);

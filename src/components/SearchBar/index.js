@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 
 import { SearchBar } from './SearchBar';
-import { searchProducts, entryQuerystring } from 'redux/Books/actions';
+import { urlBuilder, entrySearchQueryString } from 'redux/Books/actions';
 import { hasSearchResult } from 'selector/bookItemSelectors';
 
 const mapStateToProps = (state) => ({
   hasSearchResult: hasSearchResult(state),
-  filterString: state.products.filterString,
+  filterParam: state.products.filterParam,
 });
 
 const mapDispatchToProps = {
-  searchProducts,
-  entryQuerystring,
+  urlBuilder,
+  entrySearchQueryString,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

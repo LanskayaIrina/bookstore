@@ -3,10 +3,9 @@ import {
   FETCH_PRODUCTS_SUCCESS,
   PAGE_INCREMENT,
   CHECK_SHOW_MORE,
-  FILTERED_CATEGORY,
-  SAVE_FILTER_STRING,
-  SEARCH_RESULT,
-  ENTRY_QUERY_STRING,
+  SAVE_FILTER_PARAM,
+  SAVE_TO_FIRST_PAGE,
+  SAVE_SEARCH_QUERY_STRING,
   RESET_PAGE,
   FETCH_PRODUCT_BY_ID,
   GET_CATEGORIES,
@@ -18,7 +17,7 @@ const initialState = {
   product: {},
   page: 1,
   showMore: true,
-  filterString: '',
+  filterParam: [],
   searchQueryString: '',
   categories: [],
 };
@@ -59,24 +58,18 @@ export const cardsReducer = (state = initialState, action) => {
         ...state,
         showMore: payload.showMore,
       };
-    case SAVE_FILTER_STRING:
+    case SAVE_FILTER_PARAM:
       return {
         ...state,
-        filterString: payload.string,
+        filterParam: [...payload.param],
       };
-    case FILTERED_CATEGORY:
-      return {
-        ...state,
-        list: [...payload.products],
-        isFetching: false,
-      };
-    case SEARCH_RESULT:
+    case SAVE_TO_FIRST_PAGE:
       return {
         ...state,
         list: [...payload.products],
         isFetching: false,
       };
-    case ENTRY_QUERY_STRING:
+    case SAVE_SEARCH_QUERY_STRING:
       return {
         ...state,
         searchQueryString: action.payload.queryString,

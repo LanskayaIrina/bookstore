@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { Books } from './Books';
-import { getProducts, pageIncrement, checkShowMore, filterCategory, searchProducts } from 'redux/Books/actions';
+import { pageIncrement, checkShowMore, urlBuilder } from 'redux/Books/actions';
 import { getQueryString } from 'selector/bookItemSelectors';
 
 const mapStateToProps = (state) => ({
@@ -9,16 +9,14 @@ const mapStateToProps = (state) => ({
   isFetching: state.products.isFetching,
   page: state.products.page,
   showMore: state.products.showMore,
-  filterString: state.products.filterString,
-  queryString: getQueryString(state),
+  filterParam: state.products.filterParam,
+  querySearchString: getQueryString(state),
 });
 
 const mapDispatchToProps = {
-  getProducts,
   pageIncrement,
   checkShowMore,
-  filterCategory,
-  searchProducts,
+  urlBuilder,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Books);
