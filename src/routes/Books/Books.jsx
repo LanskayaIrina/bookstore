@@ -7,6 +7,7 @@ import { BooksSlider } from 'components/Slider';
 import SearchBar from 'components/SearchBar';
 import { bookPropTypes } from 'propTypes/books';
 import SideBar from 'components/Layout/SideBar';
+import { Button } from 'components/_shared/Button';
 
 import './styles.scss';
 
@@ -19,14 +20,22 @@ export const Books = ({
   querySearchString,
   filterParam,
   urlBuilder,
+  favorites,
+  isFavorites,
+  switchOnFavorites,
 }) => {
   const handleMoreCards = () => {
     urlBuilder({
+      page,
       category: filterParam,
-      page: 1,
       title_like: querySearchString,
+      id: isFavorites ? favorites : '',
     });
     pageIncrement();
+  };
+
+  const toggleFavoritesProducts = () => {
+    switchOnFavorites();
   };
 
   useEffect(() => {
@@ -40,25 +49,33 @@ export const Books = ({
     checkShowMore(list);
   }, [list]);
 
+  useEffect(() => {
+    urlBuilder({
+      id: isFavorites ? favorites : '',
+      page: 1,
+    });
+  }, [isFavorites]);
+
   return (
     <div className="books">
       <div className="books-page">
         <SideBar page={page} />
         <div className="container">
           <BooksSlider />
-          <SearchBar />
+          <div className="row">
+            <SearchBar />
+            <Button
+              className="btn__switch-favorites"
+              text={isFavorites ? 'Show All' : 'Show favorites'}
+              onClick={toggleFavoritesProducts}
+            />
+          </div>
           <div className="books-items">
             {list.map((book) => (
               <BookItem key={book.id} book={book} />
             ))}
           </div>
-          <div className="books-more">
-            {showMore ? (
-              <button className="books-more-btn" onClick={handleMoreCards}>
-                Show more
-              </button>
-            ) : null}
-          </div>
+          <div className="books-more">{showMore ? <Button onClick={handleMoreCards} text="Show more" /> : null}</div>
         </div>
       </div>
     </div>
@@ -67,7 +84,7 @@ export const Books = ({
 
 Books.propTypes = {
   list: arrayOf(bookPropTypes).isRequired,
-  getCards: func.isRequired,
+  urlBuilder: func.isRequired,
   page: number.isRequired,
   showMore: bool.isRequired,
   pageIncrement: func.isRequired,
@@ -75,5 +92,10 @@ Books.propTypes = {
   location: shape({}).isRequired,
   queryString: string.isRequired,
   filterParam: arrayOf(string),
-  searchProducts: func.isRequired,
+  favorites: arrayOf(number),
+  isFavorites: bool.isRequired,
+};
+
+Books.defaultProps = {
+  queryString: '',
 };

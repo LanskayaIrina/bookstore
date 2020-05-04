@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { func, number } from 'prop-types';
+import { func, number, bool, arrayOf } from 'prop-types';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Checkbox } from '@material-ui/core';
 
 import './styles.scss';
 
-export const SideBar = ({ getCategories, categories, searchString, hasCategories, urlBuilder, entryFilterParam }) => {
+export const SideBar = ({
+  getCategories,
+  categories,
+  searchString,
+  hasCategories,
+  urlBuilder,
+  entryFilterParam,
+  favorites,
+  isFavorites,
+}) => {
   const [categoryIsChecked, setCategoryIsChecked] = useState({});
 
   const [categoryForRequest, setCategoryForRequest] = useState([]);
@@ -31,6 +40,7 @@ export const SideBar = ({ getCategories, categories, searchString, hasCategories
       page: 1,
       category: categoryForRequest,
       title_like: searchString,
+      id: isFavorites ? favorites : '',
     });
 
     entryFilterParam(categoryForRequest);
@@ -69,6 +79,8 @@ export const SideBar = ({ getCategories, categories, searchString, hasCategories
 };
 
 SideBar.propTypes = {
-  filterCategory: func.isRequired,
+  urlBuilder: func.isRequired,
   page: number.isRequired,
+  isFavorites: bool.isRequired,
+  favorites: arrayOf(number),
 };
