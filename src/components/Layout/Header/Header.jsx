@@ -7,7 +7,7 @@ import logo from 'assets/images/logo.svg';
 
 import './styles.scss';
 
-export const Header = ({ isLogged, cartCount }) => {
+export const Header = ({ isLogged, cartCount, authUser }) => {
   return (
     <div className="header">
       <div className="logo">
@@ -20,12 +20,12 @@ export const Header = ({ isLogged, cartCount }) => {
         <NavLink to={CONTACTS} className="link  contacts-link">
           Contacts
         </NavLink>
-        <NavLink to={CART} className="link  card-link">
+        <NavLink to={CART} className="link  cart-link">
           <span>Cart</span>
           <span className="cart-count">{cartCount > 0 && isLogged ? cartCount : null}</span>
         </NavLink>
         {isLogged ? (
-          <NavLink to={LOGIN} className="link log-link">
+          <NavLink to={LOGIN} className="link log-link" onClick={() => authUser(false)}>
             Logout
           </NavLink>
         ) : (

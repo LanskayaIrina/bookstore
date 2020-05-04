@@ -30,8 +30,10 @@ export const Books = ({
   };
 
   useEffect(() => {
-    trackPromise(urlBuilder());
-    pageIncrement();
+    if (!list.length) {
+      trackPromise(urlBuilder());
+      pageIncrement();
+    }
   }, []);
 
   useEffect(() => {

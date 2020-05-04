@@ -13,7 +13,8 @@ import {
 
 const initialState = {
   list: [],
-  product: {},
+  isFetching: false,
+  product: null,
   page: 1,
   showMore: true,
   filterParam: [],
