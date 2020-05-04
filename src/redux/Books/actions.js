@@ -9,11 +9,12 @@ import {
   FETCH_PRODUCT_BY_ID,
   SAVE_FILTER_PARAM,
   GET_CATEGORIES,
+  SWITCH_ON_FAVORITES,
 } from './actionTypes';
 import { HttpService } from 'services/HttpService';
 import { LIMIT_PRODUCTS } from 'constants/index';
 
-const defaultUrl = `products?_limit=${LIMIT_PRODUCTS}`;
+const defaultUrl = `products?`;
 
 export const fetchProductsBegin = () => ({
   type: FETCH_PRODUCTS_BEGIN,
@@ -74,6 +75,8 @@ export const getCategories = () => (dispatch) => {
   });
 };
 
+export const switchOnFavorites = () => (dispatch) => dispatch({ type: SWITCH_ON_FAVORITES });
+
 export const urlBuilder = (
   options = {
     page: 1,
@@ -81,7 +84,6 @@ export const urlBuilder = (
 ) => {
   /**
    *  @param {object} options
-   *  @param {string} options.string your handmade query-string
    *  @param {string} options.single if you want get single product
    *
    *  You can write query key as a options key, and param
@@ -102,11 +104,11 @@ export const urlBuilder = (
       }, '');
 
       return (newQueryString += concatQueryParam);
-    } else if (key === 'string') {
-      return (newQueryString += options[key]);
     } else if (key === 'single') {
       return (newQueryString += `${options[key]}`);
     } else if (!optionsValue) {
+      return (newQueryString += '');
+    } else if (key === 'page') {
       return (newQueryString += '');
     }
 
@@ -116,21 +118,23 @@ export const urlBuilder = (
   return (dispatch) => {
     dispatch(fetchProductsBegin());
 
-    return HttpService.get(`${defaultUrl}${createdQueryString}`).then((products) => {
-      if (page === 1) {
-        dispatch({
-          type: RESET_PAGE,
-        });
-        dispatch({
-          type: SAVE_TO_FIRST_PAGE,
-          payload: { products },
-        });
-      } else {
-        dispatch({
-          type: FETCH_PRODUCTS_SUCCESS,
-          payload: { products },
-        });
+    return HttpService.get(`${defaultUrl}_page=${page}&_limit=${LIMIT_PRODUCTS}${createdQueryString}`).then(
+      (products) => {
+        if (page > 1) {
+          dispatch({
+            type: FETCH_PRODUCTS_SUCCESS,
+            payload: { products },
+          });
+        } else {
+          dispatch({
+            type: RESET_PAGE,
+          });
+          dispatch({
+            type: SAVE_TO_FIRST_PAGE,
+            payload: { products },
+          });
+        }
       }
-    });
+    );
   };
 };

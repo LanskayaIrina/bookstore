@@ -1,10 +1,17 @@
 import React from 'react';
-import { func, bool, string } from 'prop-types';
+import { func, bool, string, arrayOf, number } from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
 import './styles.scss';
 
-export const SearchBar = ({ urlBuilder, hasSearchResult, entrySearchQueryString, filterParam }) => {
+export const SearchBar = ({
+  urlBuilder,
+  hasSearchResult,
+  entrySearchQueryString,
+  filterParam,
+  favorites,
+  isFavorites,
+}) => {
   const startSearch = (event) => {
     const {
       target: { value },
@@ -17,6 +24,7 @@ export const SearchBar = ({ urlBuilder, hasSearchResult, entrySearchQueryString,
         page: 1,
         title_like: value,
         category: filterParam,
+        id: isFavorites ? favorites : '',
       });
     }, 3000);
   };
@@ -34,6 +42,8 @@ SearchBar.propTypes = {
   hasSearchResult: bool.isRequired,
   entrySearchQueryString: func.isRequired,
   filterString: string,
+  isFavorites: bool.isRequired,
+  favorites: arrayOf(number),
 };
 
 SearchBar.defaultProps = {

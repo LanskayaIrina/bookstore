@@ -9,6 +9,7 @@ import {
   RESET_PAGE,
   FETCH_PRODUCT_BY_ID,
   GET_CATEGORIES,
+  SWITCH_ON_FAVORITES,
 } from './actionTypes';
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
   filterParam: [],
   searchQueryString: '',
   categories: [],
+  isFavorites: false,
 };
 
 export const cardsReducer = (state = initialState, action) => {
@@ -73,6 +75,11 @@ export const cardsReducer = (state = initialState, action) => {
       return {
         ...state,
         categories: [...payload.categories],
+      };
+    case SWITCH_ON_FAVORITES:
+      return {
+        ...state,
+        isFavorites: !state.isFavorites,
       };
     default:
       return state;
