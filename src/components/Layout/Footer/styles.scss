@@ -1,6 +1,7 @@
 @import "../../../styles/variables.scss";
 
 .footer {
+  box-sizing: border-box;
   display: flex;
   flex: 0 0 auto;
   height: 80px;

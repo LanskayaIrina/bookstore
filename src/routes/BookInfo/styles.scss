@@ -1,12 +1,12 @@
 .book {
-  margin: 30px 0;
+  padding: 30px 0;
 }
 
 .book-detail {
   margin: 15px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .book-detail-info {
@@ -14,6 +14,7 @@
 
   @media (min-width: 1023px) {
     max-width: 480px;
+    padding-left: 20px;
   }
 }
 

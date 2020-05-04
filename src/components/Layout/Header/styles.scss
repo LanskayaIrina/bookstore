@@ -14,20 +14,13 @@
   justify-content: flex-end;
 }
 
-.menu-items {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 20px;
-}
-
 .log-link {
   &:hover {
     background-color: $color_log-link;
   }
 }
 
-.card-link {
+.cart-link {
   &:hover {
     background-color: $color_card-link;
   }
@@ -48,12 +41,6 @@
   }
 }
 
-.burger-menu {
-  @media (min-width: 700px) {
-    display: none;
-  }
-}
-
 .logo-img {
   display: none;
   width: 20px;
@@ -63,22 +50,4 @@
   @media (min-width: 310px) {
     display: block;
   }
-}
-
-.btn:focus {
-  outline: none;
-}
-
-.simple-menu {
-  top: -20px;
-  left: -3px;
-  width: 200px;
-  height: 100vh;
-  position: absolute;
-  background-color: $white;
-  box-shadow: 100px 0 100px 1000px #00000062;
-  z-index: 6;
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
 }

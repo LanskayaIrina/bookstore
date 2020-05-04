@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { func, number } from 'prop-types';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { Checkbox } from '@material-ui/core';
 
 import './styles.scss';
 
@@ -57,13 +58,9 @@ export const SideBar = ({ getCategories, categories, searchString, hasCategories
   return hasCategories ? (
     <div className="side-bar">
       <h2 className="title">Categories</h2>
-      <FormGroup column>
+      <FormGroup>
         {categories.map((category) => (
-          <FormControlLabel
-            key={category}
-            control={<input type="checkbox" checked={categoryIsChecked[category]} onChange={onCheck} name={category} />}
-            label={category}
-          />
+          <FormControlLabel key={category} control={<Checkbox onChange={onCheck} name={category} />} label={category} />
         ))}
       </FormGroup>
       <button onClick={clearAllFilters}>Clear All</button>
