@@ -1,0 +1,22 @@
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-checkout {
+  width: 60%;
+  padding: 0 25px 20px;
+  background-color: #fff;
+}
+
+.modal-checkout-close {
+  position: absolute;
+  top: 4px;
+  left: 95%;
+}
+
+.form-checkout {
+  display: flex;
+  flex-direction: column;
+}
