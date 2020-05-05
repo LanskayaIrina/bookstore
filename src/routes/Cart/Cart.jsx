@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { number, func, arrayOf, shape } from 'prop-types';
 
 import CartProduct from 'components/CartProduct';
-import { BOOKS } from 'constants/pathNames';
+import Checkout from 'routes/Checkout';
+import { CHECKOUT } from 'constants/pathNames';
 
 import './style.scss';
 
@@ -12,13 +13,18 @@ export const Cart = ({
   listProducts,
   listProductsId,
   orderingListProducts,
-  orderProducts,
   getProductsForCart,
   clearListProducts,
   totalPriceCart,
   setInitialOrderingProducts,
 }) => {
-  const { push } = useHistory();
+  const { push, location } = useHistory();
+
+  const [isOpenCheckout, toggleOpenCheckout] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname === CHECKOUT) toggleOpenCheckout(true);
+  }, [location]);
 
   useEffect(() => {
     setInitialOrderingProducts(listProductsId, orderingListProducts);
@@ -28,9 +34,9 @@ export const Cart = ({
     listProductsId.length ? getProductsForCart(listProductsId) : clearListProducts();
   }, [listProductsId]);
 
-  const handleBuy = () => {
-    orderProducts(orderingListProducts);
-    push(BOOKS);
+  const openCheckout = () => {
+    toggleOpenCheckout(true);
+    push(CHECKOUT);
   };
 
   return (
@@ -42,9 +48,10 @@ export const Cart = ({
               <CartProduct key={product.id} book={product} />
             ))}
           </div>
+          <Checkout isOpen={isOpenCheckout} toggleOpenCheckout={toggleOpenCheckout} />
           <div className="cart-footer">
             <div className="cart-control">
-              <Button className="cart-checkout" onClick={handleBuy}>
+              <Button className="cart-checkout" onClick={openCheckout}>
                 Checkout
               </Button>
               <div className="cart-price">
@@ -54,8 +61,8 @@ export const Cart = ({
           </div>
         </div>
       ) : (
-        <span>Cart is empty:(</span>
-      )}
+          <span>Cart is empty:(</span>
+        )}
     </>
   );
 };

@@ -8039,7 +8039,101 @@
         "id": 3,
         "count": 4
       }
-    ]
+    ],
+    [
+      {
+        "id": 17,
+        "count": 1
+      }
+    ],
+    [
+      {
+        "id": 16,
+        "count": 1
+      },
+      {
+        "id": 17,
+        "count": 1
+      }
+    ],
+    [
+      {
+        "id": 1,
+        "count": 1
+      },
+      {
+        "id": 2,
+        "count": 1
+      }
+    ],
+    [
+      {
+        "id": 4,
+        "count": 1
+      }
+    ],
+    [
+      {
+        "id": 3,
+        "count": 1
+      },
+      {
+        "id": 4,
+        "count": 1
+      }
+    ],
+    [
+      {
+        "id": 2,
+        "count": 1
+      },
+      {
+        "id": 3,
+        "count": 1
+      }
+    ],
+    [
+      {
+        "id": 2,
+        "count": 1
+      },
+      {
+        "id": 3,
+        "count": 3
+      }
+    ],
+    {
+      "delivery": {
+        "city": "Lviv",
+        "adress": "123",
+        "phone": "0123456789",
+        "date": 817166711
+      },
+      "products": [
+        {
+          "id": 1,
+          "count": 1
+        },
+        {
+          "id": 2,
+          "count": 1
+        },
+        {
+          "id": 3,
+          "count": 1
+        }
+      ],
+      "id": 1000
+    }
   ],
-  "categories": ["Adventure", "Romance", "Children", "Education", "Fantasy", "History", "Horror", "Humor"]
+  "categories": [
+    "Adventure",
+    "Romance",
+    "Children",
+    "Education",
+    "Fantasy",
+    "History",
+    "Horror",
+    "Humor"
+  ]
 }

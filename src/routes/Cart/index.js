@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { Cart } from './Cart';
-import { orderProducts, getProductsForCart, clearListProducts, setInitialOrderingProducts } from 'redux/Cart/actions';
+import { getProductsForCart, clearListProducts, setInitialOrderingProducts } from 'redux/Cart/actions';
 import { totalPriceCart } from 'selector/cartSelectors';
 
 const mapStateToProps = (state) => ({
@@ -12,7 +12,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  orderProducts,
   getProductsForCart,
   clearListProducts,
   setInitialOrderingProducts,
