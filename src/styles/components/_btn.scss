@@ -7,14 +7,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 0 1 auto;
   background-color: $btn_default-bg;
   color: $btn_default-color;
   transition: all 0.3s;
 
-  .book-about & {
+  .book-about &,
+  .book-detail-info & {
     max-width: 50px;
     padding: 5px;
     background-color: $color_card-link;
+    margin-right: 10px;
+  }
+
+  .cart {
+    max-width: 100px;
   }
 
   &.cart {
