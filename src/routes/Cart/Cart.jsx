@@ -30,7 +30,6 @@ export const Cart = ({
     setInitialOrderingProducts(listProductsId, orderingListProducts);
     // eslint-disable-next-line
   }, []);
-
   useEffect(() => {
     listProductsId.length ? getProductsForCart(listProductsId) : clearListProducts();
     // eslint-disable-next-line
@@ -73,6 +72,7 @@ Cart.propTypes = {
   listProducts: arrayOf(shape),
   listProductsId: arrayOf(number),
   orderingListProducts: arrayOf(shape),
+  orderProducts: func.isRequired,
   getProductsForCart: func.isRequired,
   clearListProducts: func.isRequired,
   totalPriceCart: number.isRequired,

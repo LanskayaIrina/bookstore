@@ -7,6 +7,7 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { trackPromise } from 'react-promise-tracker';
 
 import { bookPropTypes } from 'propTypes/books';
+import { Button } from 'components/_shared/Button';
 
 import './styles.scss';
 
@@ -54,26 +55,24 @@ export const BookInfo = ({
         <div className="book-detail-info">
           <h2 className="title">{title}</h2>
           <p className="description">{description}</p>
-          <button
-            className="book-bookmark book-button"
-            type="button"
-            onClick={onClickFavorite}
-            style={{
-              background: isBookInFavorite ? 'yellow' : '',
-            }}
-          >
-            <StarBorderIcon classes={{ root: 'book-bookmark-media' }} />
-          </button>
-          <button
-            className="book-basket book-button"
-            type="button"
-            onClick={onClickCart}
-            style={{
-              background: isBookInCart ? 'red' : '',
-            }}
-          >
-            <ShoppingBasketIcon classes={{ root: 'book-basket-media' }} />
-          </button>
+          <div className="row">
+            <Button
+              className="favorites"
+              onClick={onClickFavorite}
+              element={<StarBorderIcon classes={{ root: 'book-bookmark-media' }} color="action" />}
+              style={{
+                background: isBookInFavorite ? '#fcf815e1' : '',
+              }}
+            />
+            <Button
+              className="cart"
+              onClick={onClickCart}
+              element={<ShoppingBasketIcon classes={{ root: 'book-basket-media' }} />}
+              style={{
+                background: isBookInCart ? '#fd2e2eb0' : '',
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
