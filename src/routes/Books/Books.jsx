@@ -25,12 +25,15 @@ export const Books = ({
   switchOnFavorites,
 }) => {
   const handleMoreCards = () => {
-    urlBuilder({
-      page,
-      category: filterParam,
-      title_like: querySearchString,
-      id: isFavorites ? favorites : '',
-    });
+    trackPromise(
+      urlBuilder({
+        page,
+        category: filterParam,
+        title_like: querySearchString,
+        id: isFavorites ? favorites : '',
+      })
+    );
+
     pageIncrement();
   };
 
@@ -52,10 +55,12 @@ export const Books = ({
   }, [list]);
 
   useEffect(() => {
-    urlBuilder({
-      id: isFavorites ? favorites : '',
-      page: 1,
-    });
+    trackPromise(
+      urlBuilder({
+        id: isFavorites ? favorites : '',
+        page: 1,
+      })
+    );
     // eslint-disable-next-line
   }, [isFavorites]);
 
