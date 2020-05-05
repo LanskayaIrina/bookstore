@@ -1,5 +1,4 @@
 import {
-  FETCH_PRODUCTS_BEGIN,
   FETCH_PRODUCTS_SUCCESS,
   PAGE_INCREMENT,
   CHECK_SHOW_MORE,
@@ -16,10 +15,6 @@ import { LIMIT_PRODUCTS } from 'constants/index';
 
 const defaultUrl = `products?`;
 
-export const fetchProductsBegin = () => ({
-  type: FETCH_PRODUCTS_BEGIN,
-});
-
 export const fetchProductsSuccess = (products) => ({
   type: FETCH_PRODUCTS_SUCCESS,
   payload: { products },
@@ -27,8 +22,6 @@ export const fetchProductsSuccess = (products) => ({
 
 export const getBookById = (id) => {
   return (dispatch) => {
-    dispatch(fetchProductsBegin());
-
     return HttpService.get(`products/${id}`).then((product) => {
       dispatch({ type: FETCH_PRODUCT_BY_ID, payload: { product } });
     });
@@ -116,8 +109,6 @@ export const urlBuilder = (
   }, '');
 
   return (dispatch) => {
-    dispatch(fetchProductsBegin());
-
     return HttpService.get(`${defaultUrl}_page=${page}&_limit=${LIMIT_PRODUCTS}${createdQueryString}`).then(
       (products) => {
         if (page > 1) {

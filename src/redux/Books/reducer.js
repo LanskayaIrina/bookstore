@@ -1,5 +1,4 @@
 import {
-  FETCH_PRODUCTS_BEGIN,
   FETCH_PRODUCTS_SUCCESS,
   PAGE_INCREMENT,
   CHECK_SHOW_MORE,
@@ -32,10 +31,6 @@ export const cardsReducer = (state = initialState, action) => {
       return {
         ...state,
         list: [...state.list, ...payload.products],
-      };
-    case FETCH_PRODUCTS_BEGIN:
-      return {
-        ...state,
       };
     case FETCH_PRODUCT_BY_ID:
       return {
