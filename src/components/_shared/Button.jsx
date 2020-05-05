@@ -1,17 +1,17 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { string, func, element } from 'prop-types';
 
-export const Button = ({ text, type, className, onClick }) => {
+export const Button = ({ text, element, type, className, onClick, style }) => {
   return (
-    <button className={`btn ${className}`} type={type} onClick={onClick}>
-      {text}
+    <button className={`btn ${className}`} type={type} onClick={onClick} style={style}>
+      {text || element}
     </button>
   );
 };
 
 Button.propTypes = {
-  text: string.isRequired,
   onClick: func.isRequired,
+  element: element,
   className: string,
   type: string,
 };
@@ -19,4 +19,6 @@ Button.propTypes = {
 Button.defaultProps = {
   type: 'button',
   className: '',
+  element: null,
+  text: '',
 };
