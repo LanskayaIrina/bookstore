@@ -38,6 +38,7 @@ export const BookInfo = ({
     if (!book.id) {
       trackPromise(getBookById(id));
     }
+    // eslint-disable-next-line
   }, []);
 
   return (

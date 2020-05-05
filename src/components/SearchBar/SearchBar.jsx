@@ -32,7 +32,7 @@ export const SearchBar = ({
   return (
     <div className="search">
       <TextField type="search" onChange={startSearch} label="Entry search query..." className="search-field" />
-      {!hasSearchResult && <span>Not matches...</span>}
+      {!hasSearchResult && <span className="no-matches">No matches...</span>}
     </div>
   );
 };
@@ -41,11 +41,7 @@ SearchBar.propTypes = {
   urlBuilder: func.isRequired,
   hasSearchResult: bool.isRequired,
   entrySearchQueryString: func.isRequired,
-  filterString: string,
   isFavorites: bool.isRequired,
   favorites: arrayOf(number),
-};
-
-SearchBar.defaultProps = {
-  filterString: '',
+  filterParam: arrayOf(string),
 };

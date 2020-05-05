@@ -43,10 +43,12 @@ export const Books = ({
       trackPromise(urlBuilder());
       pageIncrement();
     }
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     checkShowMore(list);
+    // eslint-disable-next-line
   }, [list]);
 
   useEffect(() => {
@@ -54,6 +56,7 @@ export const Books = ({
       id: isFavorites ? favorites : '',
       page: 1,
     });
+    // eslint-disable-next-line
   }, [isFavorites]);
 
   return (

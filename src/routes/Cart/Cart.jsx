@@ -19,13 +19,13 @@ export const Cart = ({
   setInitialOrderingProducts,
 }) => {
   const { push } = useHistory();
-
   useEffect(() => {
     setInitialOrderingProducts(listProductsId, orderingListProducts);
+    // eslint-disable-next-line
   }, []);
-
   useEffect(() => {
     listProductsId.length ? getProductsForCart(listProductsId) : clearListProducts();
+    // eslint-disable-next-line
   }, [listProductsId]);
 
   const handleBuy = () => {

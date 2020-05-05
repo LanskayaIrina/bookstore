@@ -20,20 +20,24 @@ export const SideBar = ({
 
   const [categoryForRequest, setCategoryForRequest] = useState([]);
 
-  const createCategories = categories.reduce((state, category) => {
-    return {
-      ...state,
-      [category]: false,
-    };
-  }, {});
+  const stateIsEmpty = Object.keys(categoryIsChecked).length;
 
   useEffect(() => {
     getCategories();
-  }, [getCategories]);
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
-    if (hasCategories) setCategoryIsChecked(createCategories);
-  }, [categories]);
+    const createCategories = categories.reduce((state, category) => {
+      return {
+        ...state,
+        [category]: false,
+      };
+    }, {});
+
+    setCategoryIsChecked({ ...createCategories });
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     urlBuilder({
@@ -44,6 +48,8 @@ export const SideBar = ({
     });
 
     entryFilterParam(categoryForRequest);
+
+    // eslint-disable-next-line
   }, [categoryForRequest.length]);
 
   const onCheck = (event) => {
@@ -51,7 +57,7 @@ export const SideBar = ({
       target: { name, checked },
     } = event;
 
-    setCategoryIsChecked({ ...categoryIsChecked, [name]: checked });
+    setCategoryIsChecked({ ...categoryIsChecked, [name]: !categoryIsChecked[name] });
 
     if (checked) {
       setCategoryForRequest([...categoryForRequest, name]);
@@ -61,7 +67,14 @@ export const SideBar = ({
   };
 
   const clearAllFilters = () => {
-    setCategoryIsChecked(createCategories);
+    setCategoryIsChecked({
+      ...categories.reduce((state, category) => {
+        return {
+          ...state,
+          [category]: false,
+        };
+      }, {}),
+    });
     setCategoryForRequest([]);
   };
 
@@ -70,7 +83,11 @@ export const SideBar = ({
       <h2 className="title">Categories</h2>
       <FormGroup>
         {categories.map((category) => (
-          <FormControlLabel key={category} control={<Checkbox onChange={onCheck} name={category} />} label={category} />
+          <FormControlLabel
+            key={category}
+            control={<Checkbox onChange={onCheck} checked={categoryIsChecked[category]} name={category} />}
+            label={category}
+          />
         ))}
       </FormGroup>
       <button onClick={clearAllFilters}>Clear All</button>
