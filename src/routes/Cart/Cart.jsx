@@ -28,10 +28,12 @@ export const Cart = ({
 
   useEffect(() => {
     setInitialOrderingProducts(listProductsId, orderingListProducts);
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     listProductsId.length ? getProductsForCart(listProductsId) : clearListProducts();
+    // eslint-disable-next-line
   }, [listProductsId]);
 
   const openCheckout = () => {
@@ -61,8 +63,8 @@ export const Cart = ({
           </div>
         </div>
       ) : (
-          <span>Cart is empty:(</span>
-        )}
+        <span>Cart is empty:(</span>
+      )}
     </>
   );
 };
@@ -71,7 +73,6 @@ Cart.propTypes = {
   listProducts: arrayOf(shape),
   listProductsId: arrayOf(number),
   orderingListProducts: arrayOf(shape),
-  orderProducts: func.isRequired,
   getProductsForCart: func.isRequired,
   clearListProducts: func.isRequired,
   totalPriceCart: number.isRequired,

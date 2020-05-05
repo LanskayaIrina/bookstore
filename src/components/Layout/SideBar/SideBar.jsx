@@ -3,6 +3,7 @@ import { func, number, bool, arrayOf } from 'prop-types';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Checkbox } from '@material-ui/core';
+import { trackPromise } from 'react-promise-tracker';
 
 import './styles.scss';
 
@@ -10,40 +11,49 @@ export const SideBar = ({
   getCategories,
   categories,
   searchString,
-  hasCategories,
   urlBuilder,
   entryFilterParam,
   favorites,
   isFavorites,
 }) => {
-  const [categoryIsChecked, setCategoryIsChecked] = useState({});
+  const [categoryIsChecked, setCategoryIsChecked] = useState([]);
 
   const [categoryForRequest, setCategoryForRequest] = useState([]);
 
-  const createCategories = categories.reduce((state, category) => {
-    return {
-      ...state,
-      [category]: false,
-    };
-  }, {});
+  const stateIsEmpty = categoryIsChecked.length < 1;
 
   useEffect(() => {
     getCategories();
-  }, [getCategories]);
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
-    if (hasCategories) setCategoryIsChecked(createCategories);
+    const createCategories = categories.reduce((state, category) => {
+      return [
+        ...state,
+        {
+          title: category,
+          check: false,
+        },
+      ];
+    }, []);
+
+    if (stateIsEmpty) setCategoryIsChecked([...createCategories]);
+    // eslint-disable-next-line
   }, [categories]);
 
   useEffect(() => {
-    urlBuilder({
-      page: 1,
-      category: categoryForRequest,
-      title_like: searchString,
-      id: isFavorites ? favorites : '',
-    });
+    trackPromise(
+      urlBuilder({
+        page: 1,
+        category: categoryForRequest,
+        title_like: searchString,
+        id: isFavorites ? favorites : '',
+      })
+    );
 
     entryFilterParam(categoryForRequest);
+    // eslint-disable-next-line
   }, [categoryForRequest.length]);
 
   const onCheck = (event) => {
@@ -51,7 +61,20 @@ export const SideBar = ({
       target: { name, checked },
     } = event;
 
-    setCategoryIsChecked({ ...categoryIsChecked, [name]: checked });
+    setCategoryIsChecked(
+      categoryIsChecked.map(({ title, check }) => {
+        if (title === name) {
+          return {
+            title,
+            check: checked,
+          };
+        }
+        return {
+          title,
+          check,
+        };
+      })
+    );
 
     if (checked) {
       setCategoryForRequest([...categoryForRequest, name]);
@@ -61,16 +84,30 @@ export const SideBar = ({
   };
 
   const clearAllFilters = () => {
-    setCategoryIsChecked(createCategories);
+    setCategoryIsChecked(
+      categories.reduce((state, category) => {
+        return [
+          ...state,
+          {
+            title: category,
+            check: false,
+          },
+        ];
+      }, [])
+    );
     setCategoryForRequest([]);
   };
 
-  return hasCategories ? (
+  return !stateIsEmpty ? (
     <div className="side-bar">
       <h2 className="title">Categories</h2>
       <FormGroup>
-        {categories.map((category) => (
-          <FormControlLabel key={category} control={<Checkbox onChange={onCheck} name={category} />} label={category} />
+        {categoryIsChecked.map(({ title, check }) => (
+          <FormControlLabel
+            key={title}
+            control={<Checkbox onChange={onCheck} checked={check} name={title} />}
+            label={title}
+          />
         ))}
       </FormGroup>
       <button onClick={clearAllFilters}>Clear All</button>

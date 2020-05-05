@@ -25,12 +25,15 @@ export const Books = ({
   switchOnFavorites,
 }) => {
   const handleMoreCards = () => {
-    urlBuilder({
-      page,
-      category: filterParam,
-      title_like: querySearchString,
-      id: isFavorites ? favorites : '',
-    });
+    trackPromise(
+      urlBuilder({
+        page,
+        category: filterParam,
+        title_like: querySearchString,
+        id: isFavorites ? favorites : '',
+      })
+    );
+
     pageIncrement();
   };
 
@@ -43,17 +46,22 @@ export const Books = ({
       trackPromise(urlBuilder());
       pageIncrement();
     }
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     checkShowMore(list);
+    // eslint-disable-next-line
   }, [list]);
 
   useEffect(() => {
-    urlBuilder({
-      id: isFavorites ? favorites : '',
-      page: 1,
-    });
+    trackPromise(
+      urlBuilder({
+        id: isFavorites ? favorites : '',
+        page: 1,
+      })
+    );
+    // eslint-disable-next-line
   }, [isFavorites]);
 
   return (
