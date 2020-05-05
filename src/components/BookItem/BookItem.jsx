@@ -5,6 +5,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
 import { bookPropTypes } from 'propTypes/books';
+import { Button } from 'components/_shared/Button';
 
 import './styles.scss';
 
@@ -33,24 +34,22 @@ export const BookItem = ({ book, toggleProductToCart, toggleFavoriteCard, isBook
         <div className="card-content">
           <div className="book-desc">{description}</div>
           <div className="book-about">
-            <button
-              className="card-action"
+            <Button
+              className="favorites"
               onClick={addToFavorite}
+              element={<StarBorderIcon color="action" />}
               style={{
-                background: isBookInFavorite ? 'yellow' : '',
+                background: isBookInFavorite ? '#fcf815e1' : '',
               }}
-            >
-              <StarBorderIcon color="action" />
-            </button>
-            <button
-              className="card-action"
+            />
+            <Button
+              className="cart"
               onClick={addToCart}
+              element={<ShoppingBasketIcon color="action" />}
               style={{
-                background: isBookInCart ? 'red' : '',
+                background: isBookInCart ? '#fd2e2eb0' : '',
               }}
-            >
-              <ShoppingBasketIcon color="action" />
-            </button>
+            />
           </div>
         </div>
       </div>

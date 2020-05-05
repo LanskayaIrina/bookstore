@@ -11,6 +11,24 @@
   color: $btn_default-color;
   transition: all 0.3s;
 
+  .book-about & {
+    max-width: 50px;
+    padding: 5px;
+    background-color: $color_card-link;
+  }
+
+  &.cart {
+    &:hover {
+      background-color: $hover_cart;
+    }
+  }
+
+  &.favorites {
+    &:hover {
+      background-color: $hover_favorites;
+    }
+  }
+
   &:hover {
     background-color: $btn-hover_default-bg;
   }
