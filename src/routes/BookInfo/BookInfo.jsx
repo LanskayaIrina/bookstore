@@ -20,6 +20,7 @@ export const BookInfo = ({
 }) => {
   const { goBack } = useHistory();
   const { id } = useParams();
+
   const { title, img, description } = book;
 
   const onClickFavorite = (e) => {

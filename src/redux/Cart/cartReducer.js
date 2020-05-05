@@ -56,7 +56,7 @@ export const cartReducer = (state = initialState, action) => {
         orderingProducts: payload.orderList,
       };
     case REMOVE_ORDER_OF_ORDERING_LIST: {
-      const newOrderingList = state.orderingProducts.filter((order) => order?.id !== payload.id);
+      const newOrderingList = state.orderingProducts.filter((order) => order.id !== payload.id);
       return {
         ...state,
         orderingProducts: newOrderingList,
